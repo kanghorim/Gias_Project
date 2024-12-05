@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.loglog.api.commons.daos.OrganizationDao">
+	
+ 
+<!-- 공지사항 상세 조회 -->
+<select id="selectOrganization" parameterType="com.loglog.api.commons.beans.OrganizationBean" resultType="com.loglog.api.commons.beans.OrganizationBean">
+	select
+		ROW_NUMBER() OVER (ORDER BY o.organization_code ) AS No, -- 빠른 순서대로 순번 매기기
+		o.organization_code as organizationCode,
+		o.organization_name as organizationName,
+		o.join_date  as joinDate,
+		o.approver  as approver ,
+		o.state  as state ,
+		m.member_name as memberName
+		from organization o 
+		JOIN 
+    member m ON o.approver = m.member_code
+</select>
+
+<select id="selectOrganizationList" parameterType="map" resultType="com.loglog.api.commons.beans.OrganizationBean">
+	SELECT
+	    ROW_NUMBER() OVER (ORDER BY o.organization_code) AS No, -- 빠른 순서대로 순번 매기기
+	    o.organization_code AS organizationCode,
+	    o.organization_name AS organizationName,
+	    o.join_date AS joinDate,
+	    o.approver AS approver,
+	    o.state AS state,
+	    m.member_name AS memberName,
+	    CASE
+	        WHEN sub.approverCount = 52 THEN sub.approverCount
+	        ELSE 0
+	    END AS approverCount,
+	    COALESCE(eo.evaluationCount, 0) AS giasState 
+	FROM
+	    organization o
+	JOIN 
+	    member m ON o.approver = m.member_code
+	LEFT JOIN (
+	    SELECT
+	        m.organization_code,
+	        COUNT(DISTINCT s.standard) AS approverCount
+	    FROM
+	        member m
+	    LEFT JOIN LATERAL
+	        unnest(string_to_array(m.approved_standard, ',')) AS s(standard)
+	    ON TRUE
+	    WHERE
+	        m.approved_standard IS NOT NULL
+	    GROUP BY
+	        m.organization_code
+	) sub ON o.organization_code = sub.organization_code
+	LEFT JOIN (
+	    SELECT
+	        organization_code,
+	        SUM(
+	            (CASE WHEN evaluation_current IS NOT NULL THEN 1 ELSE 0 END) +
+	            (CASE WHEN evaluation_imp IS NOT NULL THEN 1 ELSE 0 END) +
+	            (CASE WHEN evaluation_score IS NOT NULL THEN 1 ELSE 0 END)
+	        ) AS evaluationCount
+	    FROM
+	        evaluation_organization
+	    GROUP BY
+	        organization_code
+	) eo ON o.organization_code = eo.organization_code
+    <where>
+        <if test="search != null and typeCd == 'state0'">
+            o.state = 0
+            AND o.organization_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+        <if test="search != null and typeCd == 'state1'">
+            o.state = 1
+            AND o.organization_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+        <if test="search != null and typeCd == 'all'">
+            o.organization_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+    </where>
+    OFFSET #{startRow} ROWS
+    FETCH NEXT #{countPerRecord} ROWS ONLY
+</select>
+
+
+<select id="selectOrganizationCount" parameterType="map" resultType="Integer">
+	select
+		COUNT(*)
+	from organization o 
+	JOIN 
+	    member m ON o.approver = m.member_code
+	<where>
+	    <if test="search != null and typeCd == 'state0'">
+	        o.state = 0
+	        and o.organization_name LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	     <if test="search != null and typeCd == 'state1'">
+	        o.state = 1
+	        and o.organization_name LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	    <if test="search != null and typeCd == 'all'">
+	        o.organization_name LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	</where>
+
+</select>
+
+<!-- 기관관리 상태값 수정 -->
+<update id="updateOrgState" parameterType="com.loglog.api.commons.beans.OrganizationBean">
+	UPDATE organization 
+	SET 
+	  state = CASE WHEN state = 0 THEN 1 ELSE 0 END
+	WHERE 
+	  organization_code = #{organizationCode};
+</update>
+
+<!-- 기관 삭제 -->
+<delete id="deleteOrg" parameterType="com.loglog.api.commons.beans.OrganizationBean">
+    DELETE FROM organization
+    WHERE organization_code = #{organizationCode}
+</delete>
+
+<!-- 기관별 승인된 스탠다드 항목 조회 -->
+<select id="approvedStandard" parameterType="com.loglog.api.commons.beans.OrganizationBean" resultType="String">
+	select 
+		approved_standard as approvedStandardList
+		from "member" m 
+	where m.organization_code = #{organizationCode}
+</select>
+</mapper> 

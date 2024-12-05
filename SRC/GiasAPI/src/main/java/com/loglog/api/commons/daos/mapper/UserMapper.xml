@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.loglog.api.commons.daos.UserDao">
+
+	<sql id="userColumn">
+		insuser_cd as insuserCd,
+		insdatetime as insdatetime,
+		upduser_cd as upduserCd,
+		updatetime as updatetime,
+		user_cd as userCd , 
+		user_nm as userNm,
+		user_kn as userKn,
+		birthday as birthday,
+		gender as gender,
+		user_mail as userMail,
+		user_pw as userPw,
+		user_phone as userPhone,
+		connect_kbn as connectKbn,
+		add1 as add1,
+		add2 as add2,
+		rank as rank,
+		jan_no as janNo,
+		cust_cd as custCd
+	</sql>
+
+	<!-- 회원 등록 -->
+	<insert id="insertUser" parameterType="com.loglog.api.commons.beans.UserBean">
+		INSERT INTO member (
+			id,
+			member_password,
+			member_name,
+			create_at,
+			update_at,
+			state,
+			organization_code,
+			privilege
+		)
+		VALUES (
+		    #{id},
+		    #{memberPassword},
+		    #{memberName},
+		    CURRENT_TIMESTAMP,
+		    CURRENT_TIMESTAMP,
+		    '0',
+		    #{organizationCode},
+		    'user'
+		);
+			</insert>
+	
+	<!-- userCd체크(string) -->
+	<select id="checkUserId" parameterType="com.loglog.api.commons.beans.UserBean" resultType="Integer">
+		select 
+			count(*)
+		from member m 
+		where id =#{id}
+	</select>
+	
+	<!-- userCd체크(string) -->
+	<select id="loginUser" parameterType="com.loglog.api.commons.beans.UserBean" resultType="com.loglog.api.commons.beans.UserBean">
+		select 
+			member_code as memberCode,
+			member_name as memberName,
+			privilege as privilege,
+			organization_code as organizationCode,
+			state as state
+			from member
+		where id = #{id}
+		and member_password = #{memberPassword}
+	</select>
+	
+	
+	<select id="selectUser" parameterType="map" resultType="com.loglog.api.commons.beans.UserBean">
+	   SELECT 
+	        ROW_NUMBER() OVER (ORDER BY 
+	            m.state DESC,
+	            CASE m.privilege 
+	                WHEN 'sAdmin' THEN 1 
+	                WHEN 'admin' THEN 2 
+	                WHEN 'user' THEN 3 
+	                ELSE 4 
+	            END
+	        ) AS No,
+	        m.member_code as memberCode,
+	        m.id,
+	        m.member_name as memberName,
+	        m.create_at as createAt,
+	        m.update_at as updateAt,
+	        a.member_name AS approver,
+	       CASE 
+		        WHEN m.approved_standard IS NOT NULL AND LENGTH(m.approved_standard) > 0 THEN 1
+		        ELSE 0
+		    END AS approvedStandard,
+	        m.state,
+	        m.organization_code as organizationCode,
+	        o.organization_name as organizationName,
+	        m.privilege
+	    FROM  
+	        member m 
+	    JOIN 
+	        organization o ON m.organization_code = o.organization_code 
+	    LEFT JOIN 
+	        "member" a ON m.approver = a.member_code 
+	    <where>
+	        <if test="search != null and typeCd == 'oName'">
+	            o.organization_name LIKE CONCAT('%', #{search}, '%')
+	        </if>
+	        <if test="search != null and typeCd == 'mName'">
+	            m.member_name LIKE CONCAT('%', #{search}, '%')
+	        </if>
+	         <if test="search != null and searchKind == 'state1'">
+	            and m.state = 1
+	        </if>
+	         <if test="search != null and searchKind == 'state0'">
+	            and m.state = 0
+	        </if>
+	    </where>
+	    ORDER BY 
+	        m.state DESC,
+	        CASE m.privilege 
+	            WHEN 'sAdmin' THEN 1 
+	            WHEN 'admin' THEN 2 
+	            WHEN 'user' THEN 3 
+	            ELSE 4 
+	        END
+	    OFFSET #{startRow} ROWS
+	    FETCH NEXT #{countPerRecord} ROWS ONLY
+	</select>
+
+	
+	<!-- 회원관리 맴버 조회 -->
+	<select id="selectUserCount" parameterType="map" resultType="Integer">
+	   SELECT 
+		   COUNT(member_code)
+		FROM 
+		    member m 
+		JOIN 
+		    organization o ON m.organization_code = o.organization_code 
+		<where>
+		    <if test="search != null and typeCd == 'oName'">
+		        o.organization_name LIKE CONCAT('%', #{search}, '%')
+		    </if>
+		    <if test="search != null and typeCd == 'mName'">
+		        m.member_name LIKE CONCAT('%', #{search}, '%')
+		    </if>
+		     <if test="search != null and searchKind == 'state1'">
+	           and m.state = 1
+	        </if>
+	         <if test="search != null and searchKind == 'state0'">
+	           and m.state = 0
+	        </if>
+		</where>
+		OFFSET #{startRow} ROWS
+		FETCH NEXT #{countPerRecord} ROWS ONLY
+	</select>
+	
+	<!-- 맴버 상태값 변경 -->
+	<update id="updateState" parameterType="com.loglog.api.commons.beans.UserBean">
+		UPDATE member 
+		SET 
+		  state = CASE WHEN state = 0 THEN 1 ELSE 0 END
+		WHERE 
+		  member_code = #{memberCode};
+	</update>
+	
+	<!-- 최초의 승인 -->
+	<update id="updateFirstState" parameterType="com.loglog.api.commons.beans.UserBean">
+		UPDATE member 
+		SET 
+		  state = CASE WHEN state = 0 THEN 1 ELSE 0 END,
+		  approver = #{approver}
+		WHERE 
+		  member_code = #{memberCode}
+	</update>
+	
+	<!-- 회원관리 맴버 조회 -->
+	<select id="checkApprover" parameterType="com.loglog.api.commons.beans.UserBean" resultType="Integer">
+	    select 
+			count(approver)
+		from "member" m 
+		where  member_code = #{memberCode}
+	</select>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser" parameterType="com.loglog.api.commons.beans.UserBean">
+	    DELETE FROM member
+	    WHERE member_code = #{memberCode}
+	</delete>
+	
+	<!-- 맴버 상태값 변경 -->
+	<update id="userPwInit" parameterType="com.loglog.api.commons.beans.UserBean">
+		UPDATE member 
+		SET 
+		  member_password = 'admin1234'
+		WHERE 
+		  member_code = #{memberCode};
+	</update>
+	
+	
+	<!-- userCd체크(string) -->
+	<select id="checkUserOrgState" parameterType="com.loglog.api.commons.beans.UserBean" resultType="Integer">
+		SELECT 
+		    o.state
+		FROM 
+		    "member" m
+		JOIN 
+		    organization o ON m.organization_code = o.organization_code
+		WHERE 
+		    m.id = #{id}
+		    AND m.member_password = #{memberPassword}
+	</select>
+	
+	<!-- 평가원별 승인된 스탠다드 항목 조회 -->
+	<select id="approvedStandard" parameterType="com.loglog.api.commons.beans.UserBean" resultType="String">
+		select 
+			approved_standard as approvedStandardList
+			from "member" m 
+		where m.member_code = #{memberCode}
+	</select>
+	
+	<!-- 맴버 상태값 변경 -->
+	<update id="updateApprovedStandard" parameterType="com.loglog.api.commons.beans.UserBean">
+		UPDATE member 
+		SET 
+		  approved_standard = #{approvedStandard}
+		WHERE 
+		  member_code = #{memberCode};  
+	</update>
+	
+	<!-- userCd체크(string) -->
+	<select id="selectOrg" parameterType="com.loglog.api.commons.beans.UserBean" resultType="com.loglog.api.commons.beans.UserBean">
+		select 
+			m.organization_code as organizationCode ,
+			o.organization_name as organizationName
+		from "member" m 
+		join organization o on m.organization_code  = o.organization_code 
+		where m.member_code = #{memberCode}
+	</select>
+	
+	<!-- userCd체크(string) -->
+	<select id="selectApprovedStandard" parameterType="com.loglog.api.commons.beans.UserBean" resultType="String">
+		select 
+			approved_standard as approvedStandardList
+		from "member" m 
+		where organization_code = #{organizationCode} 
+		and member_code != #{memberCode} 
+	</select>
+	
+	<!-- 회원별 저장된 평가리스트 조회-->
+	<select id="selectSavedOrgList" parameterType="com.loglog.api.commons.beans.UserBean" resultType="String">
+		select 
+			distinct(e.standard_code) as approvedStandardList
+		from evaluation_organization eo 
+		join evaluation e on eo.evaluation_code  = e.evaluation_code 
+		where member_code = #{memberCode}
+		order by standard_code ;
+	</select>
+	
+	
+	<!-- 회원별 작성한 평가 코드 조회-->
+	<select id="selectOrgCodeList" parameterType="com.loglog.api.commons.beans.UserBean" resultType="String">
+	    SELECT 
+	        e.evaluation_code 
+	    FROM 
+	        evaluation e
+	    WHERE 
+	        <if test="approvedOrgCodeList != null and approvedOrgCodeList.size() > 0">
+	            e.standard_code IN 
+	            <foreach item="code" collection="approvedOrgCodeList" open="(" separator="," close=")">
+	                #{code}
+	            </foreach>
+	        </if>
+	        <if test="approvedOrgCodeList == null or approvedOrgCodeList.size() == 0">
+	            1 = 0 <!-- 비어있을 때 빈 결과 반환 -->
+	        </if>
+	</select>
+	
+	<!-- 회원별 데이터가 저장될 평가 리스트 -->
+	<select id="selectAlertList" parameterType="com.loglog.api.commons.beans.UserBean" resultType="String">
+	   SELECT 
+		    DISTINCT(e.standard_code) AS approvedStandardList
+		FROM 
+		    evaluation_organization eo
+		JOIN 
+		    evaluation e ON eo.evaluation_code = e.evaluation_code
+		WHERE 
+		    eo.member_code = #{memberCode}
+		    AND (
+		        eo.evaluation_current IS NOT NULL AND eo.evaluation_current != ''
+		        OR eo.evaluation_score IS NOT NULL AND eo.evaluation_score != ''
+		        OR eo.evaluation_imp IS NOT NULL AND eo.evaluation_imp != ''
+		    )
+		ORDER BY 
+		    e.standard_code;
+
+	</select>
+
+	
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteApprovedOrg" parameterType="com.loglog.api.commons.beans.UserBean">
+	   DELETE FROM evaluation_organization
+    		WHERE member_code = #{memberCode}
+       AND evaluation_code IN
+      <foreach item="code" collection="approvedOrgCodeList" open="(" separator="," close=")">
+          #{code}
+      </foreach>
+	</delete>
+</mapper>

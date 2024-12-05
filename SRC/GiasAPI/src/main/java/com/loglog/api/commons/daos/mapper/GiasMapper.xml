@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.loglog.api.commons.daos.GiasDao">
+	
+<!-- domain조회 -->
+<select id="selectDomain" parameterType="com.loglog.api.commons.beans.GiasBean" resultType="com.loglog.api.commons.beans.GiasBean">
+   select 
+		domain_code as domainCode 
+		,domain_name as domainName 
+	from domain
+</select> 
+	
+<!-- 프린스플조회 -->
+<select id="selectPrinciple" parameterType="com.loglog.api.commons.beans.GiasBean" resultType="com.loglog.api.commons.beans.GiasBean">
+  	select 
+		principle_code as principleCode 
+		,principle_name as principleName 
+		from principle 
+	where domain_code = #{domainCode}
+</select>
+
+<!-- 스탠다드조회 -->
+<select id="selectStandard" parameterType="com.loglog.api.commons.beans.GiasBean" resultType="com.loglog.api.commons.beans.GiasBean">
+  	select 
+		standard_code as standardCode 
+		,standard_name as standardName 
+	from standard s 
+	where principle_code = #{principleCode}
+</select>
+
+<!-- 평가내용조회 -->
+<select id="selectEvaluation" parameterType="com.loglog.api.commons.beans.GiasBean" resultType="com.loglog.api.commons.beans.GiasBean">
+  	select 
+		evaluation_code as evaluationCode 
+		,evaluation_name as evaluationName 
+	from evaluation e 
+	where standard_code = #{standardCode}
+</select>
+
+<!-- 평가내용조회 -->
+<select id="selectMemberOrg" parameterType="com.loglog.api.commons.beans.GiasBean" resultType="com.loglog.api.commons.beans.GiasBean">
+	select 
+		m.organization_code as organizationCode,
+		o.organization_name as organizationName 
+	from "member" m 
+	join 
+		organization o on m.organization_code = o.organization_code
+	where m.member_code =#{memberCode}
+</select>
+
+
+<!--회원이 입력사항에 저장한 것이 있으면 저장한 입력사항 조회 -->
+<select id="selectEvlOrg" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="com.loglog.api.commons.beans.SelectGiasListBean">
+	select 
+		evaluation_code as evaluationCode,
+		organization_code as organizationCode,
+		member_code as memberCode,
+		evaluation_current as evaluationCurrent,
+		evaluation_score as evaluationScore,
+		evaluation_imp as evaluationImp,
+		evaluation_file_1 as evaluationFile1,
+		evaluation_file_2 as evaluationFile2,
+		evaluation_file_3 as evaluationFile3,
+		evaluation_file_4 as evaluationFile4,
+		evaluation_file_5 as evaluationFile5,
+		evaluation_file_6 as evaluationFile6,
+		evaluation_file_7 as evaluationFile7
+	from evaluation_organization eo 
+	where member_code = #{memberCode}
+	order by evaluation_code 
+</select>
+
+<!--관리자가 보는 기관별 품질평가 조회 -->
+<select id="selectEvlOrgList" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="com.loglog.api.commons.beans.SelectGiasListBean">
+	select 
+		evaluation_code as evaluationCode,
+		organization_code as organizationCode,
+		member_code as memberCode,
+		evaluation_current as evaluationCurrent,
+		evaluation_score as evaluationScore,
+		evaluation_imp as evaluationImp,
+		evaluation_file_1 as evaluationFile1,
+		evaluation_file_2 as evaluationFile2,
+		evaluation_file_3 as evaluationFile3,
+		evaluation_file_4 as evaluationFile4,
+		evaluation_file_5 as evaluationFile5,
+		evaluation_file_6 as evaluationFile6,
+		evaluation_file_7 as evaluationFile7
+	from evaluation_organization eo 
+	where organization_code = #{organizationCode}
+	order by evaluation_code 
+</select>
+
+<!--관리자가 보는 기관별 품질평가 조회 -->
+<select id="getAllFilePathsForOrganization" parameterType="map" resultType="String">
+    select evaluation_file_1 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_1 is not null
+    union all
+    select evaluation_file_2 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_2 is not null
+    union all
+    select evaluation_file_3 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_3 is not null
+    union all
+    select evaluation_file_4 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_4 is not null
+    union all
+    select evaluation_file_5 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_5 is not null
+    union all
+    select evaluation_file_6 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_6 is not null
+    union all
+    select evaluation_file_7 as filePath from evaluation_organization eo where organization_code = #{organizationCode} and evaluation_file_7 is not null
+</select>
+
+
+<!-- 품질평가 삭제 -->
+<delete id="deleteGias" parameterType="com.loglog.api.commons.beans.GiasBean">
+	DELETE FROM evaluation_organization
+	WHERE member_code = #{memberCode};
+</delete>
+
+<select id="selectStandardList" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="com.loglog.api.commons.beans.SelectGiasListBean">
+	select 
+		standard_code as standardCode,
+		standard_name as standardName
+	from standard s 
+</select>
+
+<!-- 평가내용조회 -->
+<select id="selectMemberApprove" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="String">
+	select 
+	approved_standard as approvedStandardList
+	from "member" m 
+	where member_code =#{memberCode}
+</select>
+
+<!-- 평가내용조회 -->
+<select id="selectApproveEvaluation" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="com.loglog.api.commons.beans.SelectGiasListBean">
+	SELECT 
+	    d.domain_code AS domainCode,
+	    d.domain_name AS domainName,
+	    p.principle_code AS principleCode,
+	    p.principle_name AS principleName,
+	    s.standard_code AS standardCode,
+	    s.standard_name AS standardName,
+	    e.evaluation_code AS evaluationCode,
+	    e.evaluation_name AS evaluationName
+	FROM 
+	    standard s
+	JOIN 
+	    principle p ON s.principle_code = p.principle_code
+	JOIN 
+	    domain d ON p.domain_code = d.domain_code
+	LEFT JOIN 
+	    evaluation e ON s.standard_code = e.standard_code
+	<where>
+	    <if test="approvedStandardSet != null and approvedStandardSet.size() > 0">
+	        s.standard_code IN 
+	        <foreach item="code" collection="approvedStandardSet" open="(" separator="," close=")">
+	            #{code}
+	        </foreach>
+	    </if>
+	    <if test="approvedStandardSet == null or approvedStandardSet.size() == 0">
+	        1 = 0 <!-- 빈 결과 반환 -->
+	    </if>
+	</where>
+</select>
+
+
+<!--공지사항 수정 -->
+<insert id="insertGias" parameterType="com.loglog.api.commons.beans.SelectGiasListBean">
+	 INSERT INTO evaluation_organization (
+	    evaluation_code ,
+	    organization_code ,
+	    member_code ,
+	    evaluation_current ,
+	    evaluation_score ,
+	    evaluation_imp 
+	)
+	VALUES (
+	    #{evaluationCode},
+	    #{organizationCode},  
+	    #{memberCode} ,
+	    #{evaluationCurrent},
+	    #{evaluationScore},
+	    #{evaluationImp}
+	);
+
+</insert>
+
+<!-- 파일 저장 -->
+<update id="updateGiasFile" parameterType="com.loglog.api.commons.beans.SelectGiasListBean">
+	UPDATE evaluation_organization 
+	SET 
+		evaluation_file_1 = #{evaluationFile1},
+		evaluation_file_2 = #{evaluationFile2},
+		evaluation_file_3 = #{evaluationFile3},
+		evaluation_file_4 = #{evaluationFile4},
+		evaluation_file_5 = #{evaluationFile5},
+		evaluation_file_6 = #{evaluationFile6},
+		evaluation_file_7 = #{evaluationFile7}
+	where 
+	organization_code = #{organizationCode}
+	and evaluation_code = #{evaluationCode}
+	and member_code = #{memberCode}
+</update>
+
+<!-- 관리자가 수정하는 품질평가 -->
+<update id="deleteAllFilePaths" parameterType="map">
+	UPDATE evaluation_organization 
+	SET 
+		evaluation_file_1 = null,
+		evaluation_file_2 = null,
+		evaluation_file_3 = null,
+		evaluation_file_4 = null,
+		evaluation_file_5 = null,
+		evaluation_file_6 = null,
+		evaluation_file_7 = null
+	where 
+	organization_code = #{orgCode}
+	and evaluation_code = #{evlCode}
+</update>
+
+<!-- 파일 저장 -->
+<update id="updateFilePath" parameterType="map">
+    UPDATE evaluation_organization
+    <set>
+        <if test="filesToKeep != null and filesToKeep.size() > 0">
+            <if test="filesToKeep.size() > 0">evaluation_file_1 = #{filesToKeep[0]},</if>
+            <if test="filesToKeep.size() > 1">evaluation_file_2 = #{filesToKeep[1]},</if>
+            <if test="filesToKeep.size() > 2">evaluation_file_3 = #{filesToKeep[2]},</if>
+            <if test="filesToKeep.size() > 3">evaluation_file_4 = #{filesToKeep[3]},</if>
+            <if test="filesToKeep.size() > 4">evaluation_file_5 = #{filesToKeep[4]},</if>
+            <if test="filesToKeep.size() > 5">evaluation_file_6 = #{filesToKeep[5]},</if>
+            <if test="filesToKeep.size() > 6">evaluation_file_7 = #{filesToKeep[6]}</if>
+        </if>
+        <if test="filesToKeep == null or filesToKeep.size() == 0">
+            evaluation_file_1 = NULL,
+            evaluation_file_2 = NULL,
+            evaluation_file_3 = NULL,
+            evaluation_file_4 = NULL,
+            evaluation_file_5 = NULL,
+            evaluation_file_6 = NULL,
+            evaluation_file_7 = NULL
+        </if>
+    </set>
+    WHERE
+        organization_code = #{orgCode}
+        AND evaluation_code = #{evlCode}
+</update>
+
+
+
+<!-- 관리자가 수정하는 품질평가 -->
+<update id="updateGiasAdmin" parameterType="com.loglog.api.commons.beans.SelectGiasListBean">
+	UPDATE evaluation_organization 
+	SET 
+		evaluation_current = #{evaluationCurrent},
+		evaluation_score = #{evaluationScore},
+		evaluation_imp = #{evaluationImp}
+	where 
+	organization_code = #{organizationCode}
+	and evaluation_code = #{evaluationCode}
+</update>
+
+<!-- 관리자가 수정하는 품질평가 -->
+<update id="updateGiasMember" parameterType="com.loglog.api.commons.beans.SelectGiasListBean">
+	UPDATE evaluation_organization 
+	SET 
+		evaluation_current = #{evaluationCurrent},
+		evaluation_score = #{evaluationScore},
+		evaluation_imp = #{evaluationImp}
+	where 
+	organization_code = #{organizationCode}
+	and evaluation_code = #{evaluationCode}
+	and member_code = #{memberCode}
+</update>
+
+
+<!-- 평가내용조회 -->
+<select id="orgApproveEvaluation" parameterType="com.loglog.api.commons.beans.SelectGiasListBean" resultType="com.loglog.api.commons.beans.SelectGiasListBean">
+	SELECT 
+	    d.domain_code AS domainCode,
+	    d.domain_name AS domainName,
+	    p.principle_code AS principleCode,
+	    p.principle_name AS principleName,
+	    s.standard_code AS standardCode,
+	    s.standard_name AS standardName,
+	    e.evaluation_code AS evaluationCode,
+	    e.evaluation_name AS evaluationName
+	FROM 
+	    standard s
+	JOIN 
+	    principle p ON s.principle_code = p.principle_code
+	JOIN 
+	    domain d ON p.domain_code = d.domain_code
+	LEFT JOIN 
+	    evaluation e ON s.standard_code = e.standard_code
+</select>
+
+
+<!-- 평가내용조회 -->
+<select id="getSavedMemberOrg" parameterType="String" resultType="String">
+	select 
+		evaluation_code as evaluationCodeList
+	from evaluation_organization eo 
+	where member_code = #{memberCode}
+</select>
+
+<select id="getExistingFilePaths" parameterType="map" resultType="map">
+    SELECT evaluation_file_1, evaluation_file_2, evaluation_file_3, 
+           evaluation_file_4, evaluation_file_5, evaluation_file_6, evaluation_file_7
+    FROM evaluation_organization
+    WHERE organization_code = #{orgCode} AND evaluation_code = #{evlCode}
+</select>
+
+<update id="updateFilePaths">
+    UPDATE evaluation_organization
+    <set>
+        <foreach collection="updatedFilePaths" item="value" index="key" separator=",">
+            ${key} = #{value}
+        </foreach>
+    </set>
+    WHERE organization_code = #{orgCode} AND evaluation_code = #{evalCode}
+</update>
+
+
+
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.loglog.api.commons.daos.NoticeDao">
+	
+<!-- 공지사항 조회 -->
+<select id="selectNotice" parameterType="com.loglog.api.commons.beans.NoticeBean" resultType="com.loglog.api.commons.beans.NoticeBean">
+SELECT 
+    ROW_NUMBER() OVER (ORDER BY n.update_at DESC) AS No,
+    n.notice_code AS noticeCode,
+    n.create_at AS createAt,
+    n.update_at AS updateAt,
+    n.notice_title AS noticeTitle,
+    n.notice_content AS noticeContent,
+    n.member_code AS memberCode,
+    m.member_name AS memberName
+FROM 
+    notice n
+JOIN 
+    member m ON n.member_code = m.member_code
+<where>
+    <if test="search != null and typeCd == 'title'">
+        n.notice_title LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'content'">
+        n.notice_content LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'all'">
+         (n.notice_title LIKE CONCAT('%', #{search}, '%') OR n.notice_content LIKE CONCAT('%', #{search}, '%'))
+    </if>
+</where>
+ORDER BY 
+    n.update_at DESC;
+</select>
+
+	 
+<!-- 공지사항 상세 조회 -->
+<select id="selectNoticeView" parameterType="com.loglog.api.commons.beans.NoticeBean" resultType="com.loglog.api.commons.beans.NoticeBean">
+	select 
+	 	n.notice_code AS noticeCode,
+	    n.create_at AS createAt,
+	    n.update_at AS updateAt,
+	    n.notice_title AS noticeTitle,
+	    n.notice_content AS noticeContent,
+	    n.member_code AS memberCode,
+	    n.target_org_code as organizationCode,
+	    n.notice_file as noticeFile,
+	    n.notice_file_name as noticeFileName
+	from notice n
+	where n.notice_code = #{noticeCode}
+</select>
+
+<!--공지사항 수정 -->
+<update id="updateNotice" parameterType="com.loglog.api.commons.beans.NoticeBean">
+    UPDATE notice
+    SET 
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent},
+        update_at = CURRENT_TIMESTAMP,
+        member_code = #{memberCode},
+        target_org_code = #{organizationCode}  
+    WHERE 
+        notice_code = #{noticeCode}
+</update>
+
+<!--공지사항 수정 -->
+<insert id="insertNotice" parameterType="com.loglog.api.commons.beans.NoticeBean">
+	 INSERT INTO notice (
+	    notice_title,
+	    notice_content,
+	    member_code,
+	    target_org_code
+	)
+	VALUES (
+	    #{noticeTitle},
+	    #{noticeContent},  
+	    #{memberCode},
+	    #{organizationCode} 
+	);
+	<!-- 마지막 insert ID 반환 -->
+	<selectKey order="AFTER" keyProperty="noticeCode" resultType="String">
+		select
+			notice_code as noticeCode 
+		from "notice" n 
+		where notice_title = #{noticeTitle}
+		and member_code = #{memberCode}
+		order by update_at desc
+		limit 1
+	</selectKey>
+</insert>
+
+
+<!--공지사항 수정 -->
+<update id="insertNoticeFile" parameterType="com.loglog.api.commons.beans.NoticeBean">
+	UPDATE notice
+    SET 
+        notice_file = #{noticeFile},
+        notice_file_name = #{noticeFileName}  
+    WHERE 
+        notice_code = #{noticeCode}
+</update>
+
+<!-- 공지사항 삭제 -->
+<delete id="deleteNotice" parameterType="com.loglog.api.commons.beans.NoticeBean">
+    DELETE FROM notice
+    WHERE notice_code = #{noticeCode}
+</delete>
+
+<!--공지사항 화면 리스트 조회 갯수-->
+ <select id="selectNoticeCount" resultType="Integer" parameterType="Map">
+SELECT 
+	count(*)
+    FROM 
+        notice n
+    LEFT JOIN 
+        member m ON n.member_code = m.member_code
+    LEFT JOIN 
+        organization o ON n.target_org_code = o.organization_code
+<where>
+    <if test="userGrade == 'sAdmin'">
+        <!-- sAdmin의 경우 -->
+        <if test="organizationCode == 'all'">
+            AND (n.target_org_code IS NULL OR n.target_org_code IS NOT NULL)
+        </if>
+        <if test="organizationCode != 'all'">
+            AND n.target_org_code = #{organizationCode}
+        </if>
+    </if>
+    <if test="userGrade != 'sAdmin'">
+        AND (n.target_org_code IS NULL OR n.target_org_code = #{organizationCode})
+    </if>
+    <if test="search != null and typeCd == 'title'">
+        AND n.notice_title LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'content'">
+        AND n.notice_content LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'all'">
+        AND (n.notice_title LIKE CONCAT('%', #{search}, '%') OR n.notice_content LIKE CONCAT('%', #{search}, '%'))
+    </if>
+</where>
+</select>
+
+<!-- 공지사항 조회 -->
+<select id="selectNoticeList" parameterType="map" resultType="com.loglog.api.commons.beans.NoticeBean">
+  SELECT 
+    ROW_NUMBER() OVER (ORDER BY n.update_at DESC) AS No,
+    n.notice_code AS noticeCode,
+    n.create_at AS createAt,
+    n.update_at AS updateAt,
+    n.notice_title AS noticeTitle,
+    n.notice_content AS noticeContent,
+    n.member_code AS memberCode,
+    m.member_name AS memberName,
+    o.organization_name AS organizationName
+FROM 
+    notice n
+LEFT JOIN 
+    member m ON n.member_code = m.member_code
+LEFT JOIN 
+    organization o ON n.target_org_code = o.organization_code
+<where>
+    <if test="userGrade == 'sAdmin'">
+        <!-- sAdmin의 경우 -->
+        <if test="organizationCode == 'all'">
+            AND (n.target_org_code IS NULL OR n.target_org_code IS NOT NULL)
+        </if>
+        <if test="organizationCode != 'all'">
+            AND n.target_org_code = #{organizationCode}
+        </if>
+    </if>
+    <if test="userGrade != 'sAdmin'">
+        AND (n.target_org_code IS NULL OR n.target_org_code = #{organizationCode})
+    </if>
+    <if test="search != null and typeCd == 'title'">
+        AND n.notice_title LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'content'">
+        AND n.notice_content LIKE CONCAT('%', #{search}, '%')
+    </if>
+    <if test="search != null and typeCd == 'all'">
+        AND (n.notice_title LIKE CONCAT('%', #{search}, '%') OR n.notice_content LIKE CONCAT('%', #{search}, '%'))
+    </if>
+</where>
+ORDER BY n.update_at DESC
+OFFSET #{startRow} ROWS
+FETCH NEXT #{countPerRecord} ROWS ONLY
+
+</select>
+
+<!--이미 저장된 공지사항의 파일이 있는지 확인-->
+ <select id="checkNoticeFile" resultType="Integer" parameterType="com.loglog.api.commons.beans.NoticeBean">
+	SELECT 
+		count(notice_file_name)
+    FROM 
+        notice n
+    where notice_code = #{noticeCode}
+</select>
+
+
+</mapper>
