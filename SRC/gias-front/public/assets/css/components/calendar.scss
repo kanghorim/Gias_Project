@@ -1,0 +1,64 @@
+.calendar_box {
+    border: 1px solid $grey-6;
+    padding: $space-md;
+    display: flex;
+    background-color: $grey-1;
+    justify-content: center;
+}
+
+.time {
+    ul li {
+        float: left;
+        margin-right: 10px;
+        padding: 10px 0;
+    }
+
+    padding: $space-sm;
+
+    label {
+        font-size: $font-base;
+        padding: 6px 0;
+    }
+
+    select {
+        margin: 10px 0;
+    }
+}
+
+.calendar {
+    border: 1px solid #ccc;
+    margin: 8px;
+    // width: 320px;
+    height: 320px;
+    max-width: 30rem;
+    max-height: 30rem;
+    background-color: rgb(222, 222, 222);
+    padding: $space-sm;
+
+    h1 {
+        font-size: $font-base;
+        text-align: center;
+        padding: $space-xs 0;
+    }
+}
+
+.timebox {
+    display: block;
+    // width: 320px;
+    padding: $space-md;
+    border: 1px solid $grey-5;
+    text-align: center;
+
+    em {
+        font-weight: 600;
+        font-size: $font-lg;
+        font-size: $font-medium;
+    }
+
+    span {
+        font-weight: 200;
+        font-size: $font-lg;
+        color: $grey-7;
+        margin-left: 14px;
+    }
+}

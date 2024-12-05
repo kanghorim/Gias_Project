@@ -1,0 +1,49 @@
+{
+    "name" : "notice",
+    "pk" : "no",
+    "type" : "grid",
+    "boardType" : 6,
+    "count" : true,
+    "search" : true,
+    "pagination" : true,
+    "detailPath" : "/notice-view",
+    "colstyle" : ["width:10%", "width:auto", "width:12%;", "width:12%;", "width:12%;"],
+    "header" : ["No", "제목", "작성자", "등록일자"],
+    "cell" : [
+        {
+            "key" : "noticeCode",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "noticeTitle",
+            "class" : "t-left t-ellipsis",
+            "link" : true
+        },        
+        {
+            "key" : "memberCode",
+            "class" : "",
+            "link" : false
+        },    
+        {
+            "key" : "memberName",
+            "class" : "",
+            "link" : false
+        },        
+        {
+            "key" : "updateAt",
+            "class" : "writer",
+            "link" : false
+        },
+        {
+            "key" : "no",
+            "class" : "",
+            "link" : false
+        }, 
+        {
+            "key" : "organizationName",
+            "class" : "",
+            "link" : false
+        }
+    ]
+}

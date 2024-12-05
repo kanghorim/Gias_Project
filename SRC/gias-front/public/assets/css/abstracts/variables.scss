@@ -1,0 +1,67 @@
+//Breakpoints map. Call using either:
+//the breakpoint({name}) mixin, or
+//using map-get($breakpoints, {name});
+$breakpoints:(
+    xxs: 375px,
+    xs: 540px,
+    sm: 768px,
+    md: 1024px,
+    lg: 1366px,
+    xl: 1680px,
+);
+
+
+//z-Index map. Call using:
+//z-index: map-get($z-index,{name});
+$z-index: (
+	base:1,
+	1: 100, // The base level
+	2: 200, 
+	3: 300,
+	4: 400, 
+	5: 500, // Chat and menu goes here
+	6: 600, // for modals
+	7: 700,
+	8: 800, // for help
+	9: 900 // Break glass if using 9
+);
+
+
+//Spacing
+$space-unit: 1rem;
+$space-xxxs: $space-unit * 0.25; //4px 
+$space-xxs: $space-unit * 0.5; //8px
+$space-xs: $space-unit * 1; //16px
+$space-sm: $space-unit * 1.5; //24px
+$space-md: $space-unit * 2; //32px
+$space-lg: $space-unit * 3; //48px
+$space-xl: $space-unit * 3.5; //56px
+$space-xxl: $space-unit * 4; //64px
+$space-xxxl: $space-unit * 8; //128px
+$space-xxxxl: $space-unit * 16; //256px
+
+
+//Radius
+$radius-xs: 2px;
+$radius-sm: 4px;
+$radius: 6px;
+
+
+//Inputs
+$inputbox-indent: 10px;
+$inputbox-indent-sm: 6px;
+$inputbox-height-md: 48px;
+$inputbox-height: 40px;
+$inputbox-height-sm: 36px;
+
+//Easing
+$ease-duration: 0.2s;
+
+
+
+$width-header: 280px;
+$width-header-sm: 200px;
+$height-header: 48px;
+$height-footer: 48px;
+
+

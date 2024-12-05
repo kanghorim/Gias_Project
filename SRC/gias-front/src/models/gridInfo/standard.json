@@ -1,0 +1,24 @@
+{
+    "name" : "standard",
+    "pk" : "no",
+    "type" : "grid",
+    "boardType" : 6,
+    "count" : true,
+    "search" : true,
+    "pagination" : true,
+    "detailPath" : "/notice-view",
+    "colstyle" : ["width:10%", "width:auto", "width:12%;", "width:12%;", "width:12%;"],
+    "header" : ["스탠다드코드", "스탠다드이름", "작성자", "등록일자"],
+    "cell" : [
+        {
+            "key" : "standardCode",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "standardName",
+            "class" : "t-left t-ellipsis",
+            "link" : true
+        }
+    ]
+}

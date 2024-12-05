@@ -1,0 +1,66 @@
+.login{
+    display: table;
+    width: 100%;
+    height: 100%;
+    padding: $space-lg 0;
+    background-color: $grey-1;
+}
+.login__wrap{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.login__box{
+    width: 90%;
+    max-width: 460px;
+    margin: $space-md auto $space-xxs;
+    padding: $space-lg;
+    text-align: left;
+    background-color: $white;
+    border-radius: $radius;
+    box-shadow: 1px 1px 4px rgba($black,0.1);
+    @include breakpoint(xs){
+        padding: $space-md $space-sm;
+    }
+    
+    &.login__box--join{
+        max-width: 760px;
+    }
+}
+.login__title{
+    font-size: $font-md;
+    margin-bottom: $space-sm;
+}
+.login__option{
+    @include float-wrap;
+    margin-top: $space-xs;
+    a,button{
+        font-size: $font-xs;
+    }
+    .login__option--left{
+        float: left;
+        color: $grey-7;
+        &:hover{
+            color: $grey-9;
+        }
+    }
+    .login__option--right{
+        float: right;
+        color: $color-primary;
+        &:hover{
+            color: $color-secondary;
+        }
+    }
+}
+
+.login__help{
+    span{
+        font-size: $font-xs;
+        color: $grey-5;
+        margin-right: $space-xxxs;
+    }
+    a{
+        font-size: $font-xs;
+        color: $grey-5;
+    }
+}

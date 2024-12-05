@@ -1,0 +1,42 @@
+
+//Css fade in/out 스타일 
+//액티브 되는 클래스명으로 $active 수정
+@mixin fade-in-active($active:active,$duration:0.3s,$delay:0.1s){
+	display: none;
+	opacity: 0;
+	&.active{
+		display: block;
+		animation: fade-in $duration ease forwards $delay;
+	}
+}
+//추가 클래스명 없이 Fade in 되어야 하는 스타일에 추가
+//Fade in 되지 않았을때 스타일에 display: none; opcity: 0; 추가
+@mixin fade-in($duration:0.3s,$delay:0.1s){
+	display: block;
+	animation: fade-in $duration ease forwards $delay;
+}
+@keyframes fade-in{
+	100%{opacity: 1;}
+}
+
+
+//Css slide 스타일 
+//Slide되기전 스타일에 display: none; opacity: 0; transform: translate(0,$space); 추가
+@mixin fade-slide($duration:0.5s,$delay:0.1s){
+	display: block;
+	animation: fade-slide $duration ease forwards $delay;
+}
+@keyframes fade-slide{
+	100%{transform:translate(0,0); opacity:1;}
+}
+
+
+//Slide down
+@mixin fade-slide-down($duration:0.5s,$delay:0.1s){
+	opacity: 1;
+    transform:translate(0,0);
+    animation: fade-slide-down $duration ease forwards $delay;
+}
+@keyframes fade-slide-down{
+	100%{margin-top:100px; opacity:0;}
+}

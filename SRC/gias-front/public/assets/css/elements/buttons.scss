@@ -1,0 +1,290 @@
+//버튼 공통 스타일
+a,
+button {
+	cursor: pointer;
+	transition: $ease-duration;
+}
+
+
+/***버튼타입***/
+//일반버튼
+.btn {
+	display: inline-block;
+	height: $inputbox-height;
+	transition: $ease-duration;
+	border-radius: $radius-xs;
+	font-size: $font-sm;
+	padding: 0 $space-sm;
+	line-height: calc(#{$inputbox-height} - 2px);
+
+	//아이콘버튼
+	&.btn--icon {
+		width: $inputbox-height;
+		height: $inputbox-height;
+		text-align: center;
+		font-size: 0;
+		padding-left: 0;
+		padding-right: 0;
+
+		&:before,
+		&:after {
+			margin: 0;
+			font-size: $font-base;
+		}
+
+		&.btn--xs {
+			width: auto;
+			height: auto;
+			padding: $space-xxs $space-xxs;
+
+			&:before {
+				font-size: $font-xxs;
+			}
+		}
+
+		&.btn--sm {
+			width: $inputbox-height-sm;
+			height: $inputbox-height-sm;
+		}
+
+		&.btn--md {
+			width: $inputbox-height-md;
+			height: $inputbox-height-md;
+
+			&:before {
+				font-size: $font-desc;
+			}
+		}
+	}
+}
+
+//라운드 버튼
+.btn--radius {
+	border-radius: 100px;
+}
+
+
+
+/***버튼 사이즈***/
+.btn--sm {
+	height: $inputbox-height-sm;
+	font-size: $font-xs;
+	padding: 0 $space-xs;
+	line-height: calc(#{$inputbox-height-sm} - 2px);
+}
+
+.btn--md {
+	font-size: $font-desc;
+	height: $inputbox-height-md;
+	line-height: calc(#{$inputbox-height-md} - 2px);
+	padding: 0 $space-md;
+}
+
+.btn--xs {
+	height: 28px;
+	line-height: 26px;
+	padding: 0 $space-xxs;
+	font-size: $font-xxs;
+	font-weight: $font-medium;
+
+	&:before {
+		margin-right: $space-xxxs;
+	}
+}
+
+.btn--xxs {
+	height: auto;
+	padding: $space-xxxs $space-xxs;
+	font-size: 10px;
+	font-weight: $font-medium;
+
+	&:before {
+		font-size: 10px;
+		margin-right: $space-xxxs;
+	}
+}
+
+.btn--full {
+	width: 100%;
+}
+
+
+
+/***버튼컬러***/
+//버튼컬러 믹스인 $color 란에 컬러를 추가하세요 
+//ex @include btn-color($color-primary);
+@mixin btn-color($color) {
+	background-color: $color;
+	color: $white;
+	border: 1px solid $color;
+
+	&:hover {
+		background-color: darken($color, 8%);
+	}
+
+	&.btn--outline {
+		background: transparent;
+		color: $color;
+
+		&:hover {
+			background-color: $color;
+			color: $white;
+		}
+	}
+}
+
+//버튼 컬러
+.btn--primary {
+	@include btn-color($color-primary);
+}
+
+.btn--secondary {
+	@include btn-color($color-secondary);
+}
+
+.btn--tertiary {
+	@include btn-color($color-tertiary);
+}
+
+.btn--alert {
+	@include btn-color($color-alert);
+}
+
+.btn--accent {
+	@include btn-color($color-accent);
+}
+
+.btn--basic {
+	@include btn-color($grey-1);
+	border: 1px solid $grey-4;
+	color: $grey-7;
+
+	&.btn--outline {
+		color: $grey-7;
+
+		&:hover {
+			color: $grey-7;
+		}
+	}
+}
+
+.btn--cancel {
+	@include btn-color($color-cancel);
+	color: $grey-7;
+
+	&.btn--outline {
+		color: $grey-7;
+
+		&:hover {
+			color: $grey-7;
+		}
+	}
+}
+
+.btn--submit {
+	min-width: 120px;
+
+	@include breakpoint(xs) {
+		min-width: 100px;
+	}
+}
+
+
+
+/***버튼 컨테이너***/
+.btns {
+	>* {
+		display: inline-block;
+		vertical-align: text-bottom;
+		margin: 0 $space-xxxs $space-xxxs 0;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&.btns--center {
+		text-align: center;
+	}
+
+	&.btns--right {
+		text-align: right;
+	}
+
+	&.btns--vertical {
+		>* {
+			display: block;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&.btns--center {
+			>* {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+
+	&.btns--dual {
+		@include float-wrap;
+
+		>* {
+			float: left;
+			width: calc(50% - #{$space-xxxs});
+			margin: 0;
+
+			&:last-child {
+				float: right;
+			}
+		}
+	}
+}
+
+
+
+
+/***기타버튼***/
+//메뉴버튼 - 햄버거
+.btn__menu {
+	width: 32px;
+	height: 32px;
+	padding: 8px 2px;
+	top: calc(50% - 18px);
+
+	@include breakpoint(xs) {
+		width: 28px;
+		height: 28px;
+		top: calc(50% - 14px);
+		padding: 7px 6px;
+	}
+
+	span {
+		border-top: 2px solid $color-text;
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: relative;
+
+		&:before,
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 2px;
+			background-color: $color-text;
+			position: absolute;
+			left: 0;
+		}
+
+		&:before {
+			top: calc(50% - 2px);
+		}
+
+		&:after {
+			bottom: 0;
+		}
+	}
+}

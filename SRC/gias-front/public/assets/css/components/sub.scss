@@ -1,0 +1,554 @@
+//이벤트 상세내용 영역
+.event-detail {
+	margin-bottom: $space-sm;
+}
+
+
+//프로파일
+.profile {
+	@include float-wrap;
+}
+
+.profile__img {
+	@include image-fit;
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	overflow: hidden;
+}
+
+.profile__info {
+	float: left;
+	display: table;
+	height: 40px;
+	margin-left: $space-xxs;
+}
+
+.profile__detail {
+	display: table-cell;
+	vertical-align: middle;
+
+	p {
+		font-size: $font-base;
+		font-weight: $font-medium;
+		color: $grey-9;
+	}
+
+	span {
+		font-size: $font-xs;
+		color: $grey-7;
+	}
+}
+
+
+//서류 썸네일 추가 scss 코드 
+.img-thumb {
+	width: 650px;
+
+	img {
+		width: 100%;
+		object-fit: cover;
+	}
+}
+
+.doc-thumb {
+	width: 160px;
+}
+
+.doc-background {
+	width: 600px;
+	height: 200px;
+
+	&--xs {
+		width: 60px;
+		height: 25px;
+	}
+}
+
+// td iconbox
+.td-setting__btn {
+	width: 32px;
+	height: 32px;
+	border: 1px solid $grey-4;
+	border-radius: $radius-xs;
+	font-size: $font-sm;
+
+	@include breakpoint(lg) {
+		width: 24px;
+		height: 24px;
+	}
+
+	&:before {
+		margin: 0;
+	}
+
+	&:hover {
+		border-color: $color-primary;
+		color: $color-primary;
+	}
+}
+
+//코드 관리 레이아웃
+.layout_set1 {
+	position: relative;
+
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+
+	.layout_set1_1 {
+		float: left;
+		width: 560px;
+	}
+
+	.layout_set1_2 {
+		float: right;
+		width: calc(100% - 600px);
+	}
+}
+
+
+
+//상품 슬라이드
+.p-slider {
+	position: relative;
+	width: 360px;
+	height: 360px;
+	margin-left: auto;
+	margin-right: auto;
+
+	.slider {
+		height: 360px;
+	}
+
+	.bx-controls-direction {
+		display: none;
+	}
+
+	.bx-pager {
+		position: absolute;
+		width: 100%;
+		bottom: 20px;
+		left: 0;
+		text-align: center;
+	}
+
+	.bx-pager-item {
+		display: inline-block;
+		margin-right: 10px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		.bx-pager-link {
+			display: block;
+			width: 10px;
+			height: 10px;
+			font-size: 0;
+			background-color: $white;
+			border-radius: 100%;
+
+			&.active {
+				background-color: $color-primary;
+			}
+		}
+	}
+}
+
+.p-slider__img {
+	height: 100%;
+
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+}
+
+
+//상세화면
+.detail {
+	@include float-wrap;
+	padding: $space-md;
+	border: 1px solid $grey-3;
+	border-radius: $radius-sm;
+
+	@include breakpoint(sm) {
+		padding: 0;
+		border: none;
+	}
+
+}
+
+.detail__img {
+	@include image-fit;
+	float: left;
+	width: 240px;
+	height: 240px;
+
+	@include breakpoint(sm) {
+		float: none;
+		margin: 0 auto;
+	}
+
+	.p-slider {
+		margin: 0;
+		width: 240px;
+		height: 240px;
+
+		.slider {
+			height: 240px;
+		}
+	}
+
+	.attach-box {
+		width: 240px;
+		height: 240px;
+	}
+}
+
+.detail__table {
+	float: right;
+	width: calc(100% - 240px - #{$space-md});
+
+	@include breakpoint(sm) {
+		float: none;
+		width: 100%;
+		margin-top: $space-sm;
+	}
+}
+
+
+//배너관리
+.banner-setting {
+	display: inline-block;
+	width: auto;
+	padding: $space-sm;
+	background-color: $grey-1;
+	border-radius: $radius-sm;
+
+	@include breakpoint(lg) {
+		width: 100%;
+	}
+}
+
+.banner-setting__box {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	@include float-wrap;
+	background-color: $white;
+	padding: $space-xs $space-sm $space-xs $space-xs;
+	border-radius: $radius-sm;
+	margin-bottom: $space-xs;
+
+	@include breakpoint(sm) {
+		position: relative;
+		padding-right: $space-xs;
+	}
+
+	@include breakpoint(xs) {
+		display: block;
+		padding: $space-xxs;
+		padding-top: calc(40px + #{$space-xs});
+	}
+}
+
+.banner-setting__img {
+	float: left;
+	width: 240px;
+
+	@include breakpoint(sm) {
+		width: 200px;
+	}
+
+	@include breakpoint(xs) {
+		float: none;
+		width: 100%;
+	}
+
+	.attach-box {
+		height: auto;
+		width: 100%;
+		min-height: 160px;
+
+		@include breakpoint(sm) {
+			min-height: 120px;
+		}
+	}
+
+	.attach-box__img {
+		position: static;
+	}
+}
+
+.banner-setting__input {
+	float: left;
+	width: 400px;
+	margin-bottom: $space-xs;
+	padding: 0 $space-md;
+
+	@include breakpoint(lg) {
+		width: calc(100% - 240px - calc(40px * 3 + #{$space-xxs} * 2));
+		padding: 0 $space-sm;
+	}
+
+	@include breakpoint(sm) {
+		width: calc(100% - 200px);
+		padding: 50px 0 0 $space-xs;
+	}
+
+	@include breakpoint(xs) {
+		float: none;
+		width: 100%;
+		padding: 0;
+		margin: $space-xs 0 0 0;
+	}
+
+	span {
+		display: block;
+		font-size: $font-xxs;
+
+		font-weight: $font-medium;
+		margin-bottom: $space-xxxs;
+	}
+
+	input {
+		width: 100%;
+	}
+}
+
+.banner-setting__btns {
+	float: left;
+	height: 100%;
+
+	@include breakpoint(sm) {
+		position: absolute;
+		right: $space-xs;
+		top: $space-xs;
+	}
+
+	@include breakpoint(xs) {
+		right: $space-xxs;
+		top: $space-xxs;
+	}
+
+	ul {
+		@include float-wrap;
+		width: calc(60px * 3 + #{$space-xs} * 2);
+
+		@include breakpoint(lg) {
+			width: calc(40px * 3 + #{$space-xxs} * 2);
+		}
+
+		li {
+			float: left;
+			border: 1px solid $white;
+			width: 60px;
+			margin-right: $space-xs;
+
+			@include breakpoint(lg) {
+				margin-right: $space-xxs;
+			}
+
+			@include breakpoint(lg) {
+				width: 40px;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.banner-setting__btn {
+	width: 60px;
+	height: 60px;
+	border: 1px solid $grey-4;
+	border-radius: $radius-xs;
+	font-size: $font-md;
+
+	@include breakpoint(lg) {
+		width: 40px;
+		height: 40px;
+	}
+
+	&:before {
+		margin: 0;
+	}
+
+	&:hover {
+		border-color: $color-primary;
+		color: $color-primary;
+	}
+}
+
+.banner-setting__del {
+	&:hover {
+		border-color: $color-accent;
+		color: $color-accent;
+	}
+}
+
+.banner-setting__add {
+	width: 100%;
+	height: 50px;
+	font-size: $font-base;
+}
+
+//카테고리 관리
+.cat-setting {
+	@include float-wrap;
+}
+
+.cat-setting__group {
+	float: left;
+	background: $grey-1;
+	border-radius: 0 0 $radius-sm $radius-sm;
+	margin: 0 $space-xs $space-xs 0;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	@include breakpoint(sm) {
+		width: 100%;
+	}
+}
+
+.cat-setting__title {
+	height: 40px;
+	text-align: center;
+	background-color: $grey-3;
+	font-size: $font-sm;
+	line-height: 38px;
+	font-weight: $font-medium;
+	border-radius: $radius-sm $radius-sm 0 0;
+}
+
+.cat-setting__body {
+	@include float-wrap;
+	padding: $space-xs;
+}
+
+.cat-setting__box {
+	float: left;
+	width: 220px;
+	margin-right: $space-xs;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&:only-child {
+		width: 280px;
+
+		@include breakpoint(sm) {
+			width: 100%;
+		}
+	}
+
+	@include breakpoint(sm) {
+		width: calc(50% - #{$space-xxs});
+	}
+
+	@include breakpoint(xs) {
+		width: 100%;
+		margin-bottom: $space-xs;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.cat-setting__list {
+	height: 350px;
+	background-color: $white;
+	border-radius: $radius-sm;
+	overflow-y: scroll;
+
+	>button {
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: 14px $space-xs;
+		text-align: left;
+		padding-left: $space-xs;
+		font-size: $font-sm;
+		@include icon(next);
+
+		&:before {
+			position: absolute;
+			font-size: 10px;
+			right: $space-xxs;
+			top: calc(50% - 5px);
+		}
+
+		&:first-child {
+			border-radius: $radius-sm $radius-sm 0 0;
+		}
+
+		&.on {
+			background-color: $color-secondary;
+			color: $white;
+		}
+	}
+
+	ul {
+		padding-top: $space-xxs;
+
+		li {
+			padding: $space-xxs $space-xs;
+
+			label {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.cat-setting__label {
+	font-size: $font-xxs;
+	font-weight: $font-bold;
+	margin-bottom: $space-xxxs;
+}
+
+.cat-setting__num {
+	font-size: $font-xxs;
+	text-align: right;
+	color: $grey-7;
+	margin-bottom: $space-xxxs;
+
+	span {
+		color: $grey-7;
+		font-weight: $font-medium;
+	}
+}
+
+.cat-setting__btns {
+	// @include float-wrap;
+	padding: 0 $space-xs $space-xs;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	row-gap: 8px;
+
+	button {
+
+		float: left;
+
+		&:nth-child(2) {
+			float: right;
+		}
+
+		&:only-child {
+			float: right;
+		}
+	}
+}

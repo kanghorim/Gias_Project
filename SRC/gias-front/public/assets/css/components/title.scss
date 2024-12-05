@@ -1,0 +1,221 @@
+//타이틀
+//서브최상단 공통 타이틀
+.sub-top{ 
+	@include float-wrap;
+	border-bottom: 1px solid $color-text;
+	padding-bottom: $space-xxs;
+	@include breakpoint(sm){
+		border-bottom: none;
+		padding-bottom: $space-xxs;;
+	}
+	h3{
+		float: left;
+        font-size: $font-lg;
+		@include breakpoint(sm){
+			float: none;
+			border-bottom: 1px solid $color-text;
+			padding-bottom: $space-xxs;
+			font-size: $font-lg;
+			font-weight: $font-medium;
+		}
+	}
+	.sub-top__navi{
+		float: right;
+		margin-top: $space-xxxs;
+		@include breakpoint(md){
+			margin-top: $space-xxs;
+		}
+		@include breakpoint(sm){
+			float: none;
+			text-align: right;
+			margin-top: $space-xxxs;
+		}
+		a,span{
+			display: inline-block;
+			font-size: $font-sm;
+			&:not(:first-child){
+				@include icon(next);
+				&:before{
+					font-size: 10px;
+					margin: 0 $space-xxs 0 $space-xxxs;
+				}
+			}
+		}
+		.navi--home:before{
+			vertical-align: baseline;
+			margin-right: $space-xxxs;
+		}
+	}
+}
+//타이틀 상세설명 공통
+.title__desc{
+    margin-top: $space-xxs;
+    font-size: $font-sm;
+    line-height: 1.4;
+    color: $grey-8;
+    @include breakpoint(sm){
+        margin-top: $space-xxxs;
+    }
+    @include breakpoint(xs){
+        font-size: $font-xs;
+    }
+}
+
+
+//기본타이틀
+.title--basic{
+	font-size: $font-base;
+    h5{
+        font-weight: $font-medium;
+    }
+}
+
+
+//서클 타이틀
+.title--circle{
+	> h5, > h6{
+		display: inline-block;
+		font-weight: $font-medium;
+		@include breakpoint(sm){
+			font-size: $font-base;
+		}
+		&:before{
+			content: "";
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			margin-right: $space-xxxs;
+			border: 3px solid $color-primary;
+			border-radius: 100px;
+			box-sizing: border-box;
+		}
+	}
+	> span{
+		display: inline-block;
+		color: $grey-7;
+        @include breakpoint(sm){
+            display: block;
+            font-size: $font-sm;
+            margin-top: $space-xxs;
+            color: $grey-9;
+            font-weight: $font-bold;
+        }
+		&:before{
+			content: "";
+			display: inline-block;
+            margin: 0 $space-xs;
+			width: 1px;
+			height: 14px;
+			background-color: $grey-3;
+            @include breakpoint(sm){
+                display: none;
+            }
+		}
+	}
+}
+
+
+//서브타이틀
+.title--sub{
+    font-weight: $font-medium;   
+    &:before{
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 12px;
+        margin-right: $space-xxxs;
+        background: url(../images/sub/icon-bullet.png) no-repeat 0 0;
+        background-size: contain;
+    }
+}
+
+
+//중앙정렬 타이틀 + 디스크립션 
+.title--set{
+	text-align: center;
+    margin-bottom: $space-md;
+	.title--set__desc{
+		color: $grey-9;
+        font-size: $font-sm;
+		@include breakpoint(sm){
+			font-size: $font-xs;
+		}
+		&:before{
+			content: "";
+			display: block;
+			width: 40px;
+			height: 2px;
+			background-color: $color-primary;
+			margin: $space-sm auto;
+			@include breakpoint(sm){
+				height: 1px;
+				margin: $space-xs auto;
+			}
+		}
+	}
+}
+
+
+//타이틀 레이아웃 (타이틀 + 컴포넌트)
+.title-wrap{
+    @include float-wrap;
+    .title-wrap__left{
+        float: left;
+        width: 40%;
+        margin-top: $space-xs;
+        @include breakpoint(sm){
+            float: none;
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+    .title-wrap__right{
+        float: right;
+        width: 60%;
+        @include breakpoint(sm){
+            float: none;
+            width: 100%;
+            > *{
+                text-align: left;
+                margin-top: $space-xxs;
+            }
+        }
+    }
+}
+
+
+
+//공지
+.notice-alert{
+	h6{
+		@include icon(notice);
+		margin-bottom: $space-xxxs;
+		color: $color-primary;
+		font-size: $font-xxs;
+		font-weight: $font-medium;
+	}
+	p{
+		font-size: $font-xxs;
+		color: $grey-7;
+	}
+}
+
+
+.notice-box{
+	background-color: $grey-1;
+	padding: $space-xs;
+	border-radius: 6px;
+	h6{
+		@include icon(notice);
+		margin-bottom: $space-xxxs;
+		color: $color-primary;
+		font-size: $font-xxs;
+		font-weight: $font-bold;
+	}
+	p{
+		font-size: $font-xxs;
+		color: $grey-8;
+	}
+}
+
+

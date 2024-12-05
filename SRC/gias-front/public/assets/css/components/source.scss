@@ -1,0 +1,119 @@
+
+.source{
+	@include float-wrap;
+	margin-bottom: $space-lg;
+	background-color: $white;
+	padding: $space-md;
+	border: 1px solid $grey-7;
+	border-radius: $radius-sm;
+    @include breakpoint(sm){
+        padding: $space-sm $space-xs; 
+    }
+    @include breakpoint(xs){
+        padding: $space-xs $space-xxs; 
+    }
+	.source__title{
+		font-weight: $font-bold;
+	}
+    .source__title--sub{
+        font-size: $font-xs;
+        font-weight: $font-medium;
+        margin: $space-md 0 $space-xxxs;
+        &:first-child{
+            margin-top: 0;
+        }
+    }
+	.source__desc{
+		font-size: $font-sm;
+		margin-top: $space-xxs;
+		q{
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: $radius-sm;
+			padding: 2px $space-xxxs;
+			background-color: $grey-1;
+			border: 1px solid $grey-4;
+			color: $grey-7;
+			font-size: 10px;
+			line-height: 1.5;
+		}
+	}
+	.source__display{
+		margin-top: $space-xs;
+		border: 1px solid $grey-3;
+		border-radius: $radius-xs;
+		padding: $space-sm;
+		> li{
+            display: inline-block;
+			margin: 0 $space-xxs $space-xxs 0;
+			&:last-child{
+				margin-bottom: 0;
+			}
+		}
+		
+		@include breakpoint(sm){
+			padding: $space-xs;
+		}
+		&.source__display--btn{
+			padding-bottom: $space-xs;
+			@include breakpoint(sm){
+				padding-bottom: $space-xxs;
+			}
+		}
+        
+        &.source__display--popup{
+            transform: translate(0,0);
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+        }
+	}
+	.source__btn{
+		@include icon(down);
+		background-color: $top-dark;
+		font-size: $font-sm;
+		color: $white;
+		height: 36px;
+		padding: 0 $space-xs;
+		border-radius: $radius-xs;
+		margin: $space-xxs 0;
+		float: right;
+		&:before{
+			display: inline-block;
+			font-size: $font-xxs;
+			margin-right: $space-xxs;
+			transition: transform $ease-duration;
+		}
+		&:hover{
+			background-color: lighten($top-dark,8%);
+		}
+		
+		&.on{
+			&:before{
+				transform: rotate(180deg);
+			}
+		}
+	}
+	.source__code{
+		display: none;
+		clear: both;
+		padding: $space-xs $space-sm;
+		background-color: $top-dark;
+		border-radius: $radius-xs;
+		overflow-x: auto; 
+		@include breakpoint(sm){
+			padding: $space-xxs;
+		}
+		pre{
+			color: $white;
+			font-size: $font-xs;
+			font-weight: $font-light;
+			letter-spacing: 1.5px;
+			line-height: 1.5;
+			@include breakpoint(sm){
+				font-size: $font-xxs;
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,373 @@
+//공통 컨테이너 스타일
+.float-wrap{
+	@include float-wrap;
+}
+.info--top-right{
+	text-align: right;
+	@include breakpoint(md){
+		font-size: $font-sm;
+	}
+	> *{
+		display: block;
+		margin: 0 0 $space-xs;
+	}
+	.link--more{
+		display: inline-block;
+	}
+}
+.wrap--mid{
+	max-width: 800px;
+}
+
+
+
+//텍스트
+.text--top{
+	margin-bottom: $space-xxs;
+}
+.text--bottom{
+	margin-top: $space-xxs;
+}
+.text--complete{
+    color: $color-primary;
+}
+.text--grey{
+    color: $grey-7;
+}
+.text--alert{
+    color: $color-alert;
+}
+.text--inline{
+    vertical-align: baseline;
+}
+.text--sm{
+    font-size: $font-sm;
+}
+.text--xs{
+    font-size: $font-xs;
+}
+.text--em{
+	color: $color-accent;	
+}
+
+
+
+
+//정렬
+.align--left{
+	text-align: left;
+}
+.align--center{
+	text-align: center;
+}
+.align--right{
+	text-align: right;
+}
+.align--top{
+	vertical-align: top;
+}
+.align--middle{
+	vertical-align: middle;
+}
+.align--bottom{
+	vertical-align: bottom;
+}
+
+
+//간격
+.spacing{
+	margin-top: $space-lg;
+	@include breakpoint(md){
+		margin-top: $space-md;
+	}
+}
+.spacing--sm{
+	margin-top: $space-md;
+	@include breakpoint(md){
+		margin-top: $space-sm;
+	}
+}
+.spacing--xs{
+	margin-top: $space-sm;
+	@include breakpoint(md){
+		margin-top: $space-xs;
+	}
+}
+.spacing--xxs{
+	margin-top: $space-xs;
+	@include breakpoint(md){
+		margin-top: $space-xxs;
+	}
+}
+.spacing--xxxs{
+	margin-top: $space-xxs;
+	@include breakpoint(md){
+		margin-top: $space-xxxs;
+	}
+}
+
+
+.cont-box{
+    background-color: $white;
+    padding: $space-lg;
+    border-radius: $radius-sm;
+    box-shadow: 1px 1px 3px rgba($black,0.08);
+}
+
+
+//상세조회
+.filter{
+    padding: $space-xs $space-xs; 
+    border: 1px solid $grey-3;
+    border-radius: $radius-sm;
+    background-color: $grey-1;
+    @include breakpoint(sm){
+    	padding: $space-xxs;    
+    }
+	@include breakpoint(xs){
+        padding: 0;    
+	}
+    table{
+        width: 100%;
+		@include breakpoint(sm){
+			display: block;
+		}
+		thead,tbody,tr{
+			@include breakpoint(sm){
+                display: block;
+            }
+		}
+        td{
+            padding: $space-xxs 2%;
+            vertical-align: top;
+            @include breakpoint(sm){
+                display: block;
+            }
+        }
+    }
+    .filter__title{
+        font-size: $font-xs;
+        font-weight: $font-medium;
+        margin-bottom: $space-xxxs;
+        @include breakpoint(xs){
+            font-size: $font-xxs;
+        }
+    }
+    .filter__btns{
+        text-align: right;
+        @include breakpoint(xs){
+            padding-top: 0;
+        }
+        > *{
+            margin-right: $space-xxs;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+	&.filter--sm{
+		td{
+            padding: $space-xxs $space-xxs;
+            vertical-align: top;
+            @include breakpoint(sm){
+                display: block;
+            }
+            @include breakpoint(xs){
+                padding: $space-xxs 2%;
+            }
+        }
+	}
+}
+
+.filter-box{
+	padding: $space-xs; 
+    border: 1px solid $grey-3;
+    border-radius: $radius-sm;
+    background-color: $white;
+    background-color: $grey-1;
+	table{
+		width: 100%;
+	}
+	th{
+		padding: 0 $space-xxs;
+		font-size: $font-xs;
+		font-weight: $font-bold;
+		line-height: 1.2;
+	}
+	td{
+		position: relative;
+		padding-right: $space-sm;
+		&:after{
+			content: "";
+			display: inline-block;
+			position: absolute;
+			width: 1px;
+			height: calc(100% + #{$space-xs});
+			background: $grey-3;
+			right: 0;
+			top: calc(-1 * #{$space-xs})
+		}
+		&:last-child{
+			padding-right: 0;
+			&:after{
+				display: none; 
+			}
+		}
+	}
+	th,td{
+		padding-bottom: $space-xs;
+	}
+	tr:first-child td:after{
+		height: calc(100% - #{$space-xs});
+		top: 0;
+	}
+	tr:only-child td:after{
+		height: 100%;
+	}
+	tr:last-child{
+		th,td{
+			padding-bottom: 0;
+		}
+	}
+	input,select{
+		border-color: $grey-2;
+	}
+	.td--nb{
+		border-right: none;
+	}
+	@include breakpoint(md){
+		padding: $space-xxs; 
+		th{
+			padding-left: 0;
+			padding-right: $space-xxxs;
+		}
+		td{
+			padding-right: $space-xs;
+		}
+	}
+	@include breakpoint(sm){
+		padding: $space-xs $space-xxs;    
+		table,tr,tbody,th,td{
+			display: block;
+		}
+		
+		td{
+			border-right: none;
+			padding: 0;
+			&:after{
+				display: none;
+			}
+		}
+		th{
+			text-align: left;
+			padding: 0;
+			margin: $space-xs 0 $space-xxxs;
+			font-size: $font-xxs;
+		}
+		tr:first-child th:first-child{
+			margin-top: 0;
+		}
+	}
+}
+.filter-box__options{
+	button{
+		display: inline-block;
+		@include breakpoint(sm){
+			margin-top: $space-xxs;
+		}
+	}
+}
+.filter-box__btns{
+	text-align: right;
+	margin-top: $space-xxs;
+	button{
+		margin: 0 0 $space-xxxs $space-xxxs;
+	}
+}
+
+
+
+//텍스트 링크
+.link{
+	color: $color-secondary;
+	text-decoration: underline;
+}
+
+
+//검색박스
+.searchbox{
+	padding: $space-sm $space-md;
+	border-radius: $radius-sm;
+	text-align: center;
+	background-color: $grey-1;
+}
+.searchbox__box{
+	@include float-wrap;
+	display: inline-block;
+}
+.searchbox_1{
+	padding: $space-sm $space-md;
+	border-radius: $radius-sm;
+	text-align: center;
+	background-color: $grey-1;
+}
+.searchbox__frame{
+	@include float-wrap;
+	display: flex; 
+	gap: 4px;
+}
+.searchbox__label{
+	float: left;
+	margin: 10px $space-xs 0 0;
+	font-size: $font-xs;
+	color: $grey-8;
+}
+.searchbox__input{
+	float: left;
+	width: 300px;
+}
+.searchbox__key{
+	margin-top: $space-sm;
+	padding-top: $space-xs;
+	border-top: 1px solid $grey-3;
+	button{
+		font-size: $font-xs;
+		margin: $space-xxxs $space-xxs;
+		font-weight: $font-medium;
+	}
+}
+
+
+//글
+.desc-wrap{
+ 	max-height: 300px;
+	overflow-y: auto;
+	@include breakpoint(md){
+		max-height: 200px;
+	}
+}
+
+
+//리스트
+.list--dot{
+	li{
+		position: relative;
+		text-align: left;
+		padding-left: 10px;
+		margin-bottom: $space-xs;
+		&:last-child{
+			margin-bottom: 0;
+		}
+		&:before{
+			content: "";
+			display: block;
+			position: absolute;
+			width: 4px;
+			height: 4px;
+			background: $color-text;
+			border-radius: 100px;
+			left: 0;
+			top: 7px;
+		}
+	}
+}

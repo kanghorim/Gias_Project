@@ -1,0 +1,60 @@
+//사이트 레이아웃
+html,body{
+	height: 100%;
+}
+.container{
+	height: 100%;
+}
+.contents{
+    width: 1366px;
+	margin-left: $width-header; 
+	min-height: calc(100% - #{$height-footer});
+    @include breakpoint(xl){
+        width: calc(100% - #{$width-header});
+    }
+	@include breakpoint(lg){
+		width: calc(100% - #{$width-header-sm});
+		margin-left: $width-header-sm; 
+	}
+	@include breakpoint(md){
+		padding-top: $height-header;
+		margin-left: 0;
+		width: 100%;
+	}
+    &.contents--full{
+        width: calc(100% - #{$width-header});
+        @include breakpoint(lg){
+		    width: calc(100% - #{$width-header-sm});
+        }
+        @include breakpoint(md){
+            width: 100%;
+        }
+        & + .footer{
+            width: calc(100% - #{$width-header});
+            @include breakpoint(lg){
+                margin-left: $width-header-sm;
+                width: calc(100% - #{$width-header-sm});
+            }
+            @include breakpoint(md){
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.contents__wrap{
+	min-height: 100%;
+	padding: $space-md $space-xxl;
+	@include breakpoint(lg){
+		padding: $space-md;
+	}
+	@include breakpoint(md){
+		padding: $space-md $space-xs;
+	}
+	@include breakpoint(sm){
+		padding-left: $space-xxs;
+		padding-right: $space-xxs;
+	}
+}

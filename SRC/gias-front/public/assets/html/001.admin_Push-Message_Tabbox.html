@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>프리드라이프 관리자</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="container">
+
+		<!--헤더-->
+		<div class="header">
+			<div class="header__top">
+				<h1 class="logo">
+					<a href="#">
+						<img class="logo--base" src="../images/common/logo-preed.png" alt="SuBPay">
+						<img class="logo--sm" src="../images/common/logo-preed.png" alt="SuBPay">
+						<img class="logo--symbol" src="../images/common/logo-preed.png" alt="SuBPay">
+					</a>
+				</h1>
+				<div class="login-info">
+					<div class="login-info__initial">
+						<span></span>
+					</div>
+					<div class="login-info__detail">
+						<p class="login-info__name"><em>Admin님</em> <span>환영합니다.</span></p>
+						<div class="login-info__btns">
+							<a href="#" class="login-info__setting">설정</a>
+							<a href="#" class="login-info__logout">로그아웃</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn__menu btn__gnb"><span></span></button>
+			<div class="gnb">
+				<p class="gnb__tit">MENU</p>
+				<ul class="gnb__menu">
+					<li>
+						<button type="button" class="icon-alert"><span>푸시 관리</span></button>
+						<ul>
+							<li><a href="#">푸시/메시지 그룹 관리</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="icon-document-check"><span>공지 관리</span></button>
+						<ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="icon-layout"><span>배너 관리</span></button>
+						<ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul>
+					</li>
+					<li>
+						<button type="button" class="icon-person"><span>관리자 관리</span></button>
+						<ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul>
+					</li>
+				</ul>
+				<button type="button" class="icon-left-circle btn__collapse"><span>메뉴접기</span></button>
+			</div>
+			<div class="gnb__bg"></div>
+		</div>
+
+
+		<!--컨텐츠-->
+		<div class="contents">
+			<div class="contents__wrap">
+
+				<!--페이지 상단-->
+				<div class="sub-top">
+					<h3>푸시/메시지 발송</h3>
+					<div class="sub-top__navi">
+						<span class="icon-home navi--home"></span>
+						<span>푸시 관리</span>
+						<span>푸시 / 메시지 발송</span>
+					</div>
+				</div>
+
+
+				<div class="tab tab--primary spacing--sm">
+					<button class="on">
+						<span>그룹 설정</span>
+					</button>
+					<button>
+						<span>발송 설정</span>
+					</button>
+				</div>
+
+				<!--Tab Content box start-->
+				<div class="tab__contents">
+
+					<!--Tab 1 Content-->
+					<div class="tab__box active">
+
+						<!--공지사항 작성-->
+						<div class="board-write spacing--xs">
+							<table class="table table--break">
+								<colgroup>
+									<col style="width:20%;">
+									<col style="width:20%;">
+									<col style="width:30%;">
+								</colgroup>
+								<tr>
+									<th>발송 그룹</th>
+									<td>
+										<ul class="checkboxes--horizontal">
+											<li>
+												<input type="radio" name="write" id="write_all" checked>
+												<label for="write_all">전체</label>
+											</li>
+											<li>
+												<input type="radio" name="write" id="group_notice">
+												<label for="group_notice">그룹 선택</label>
+											</li>
+
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th>그롭 검색</th>
+									<td>
+										<div class="input-add">
+											<div class="input-add__box">
+												<input type="text" placeholder="내용을 입력해주세요">
+												<button type="button"
+													class="btn btn--primary btn--icon icon-search">검색</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<!--그룹 관리-->
+						<div class="cat-setting spacing--xs">
+							<div class="cat-setting__group">
+								<!-- <p class="cat-setting__title">전체 상품명</p> -->
+								<div class="cat-setting__body">
+									<div class="cat-setting__box">
+										<div class="table__wrap spacing--xxxs">
+											<table class="table table--split">
+												<tr>
+													<th>
+														<input type="checkbox" id="check_1">
+														<label for="check_1"></label>
+													</th>
+													<th>코드</th>
+													<th>이름</th>
+													<th>인원수</th>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>0001</td>
+													<td>IT 개발 팀</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2">
+														<label for="check_2"></label>
+													</td>
+													<td>0002</td>
+													<td>IT 개발 팀</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2">
+														<label for="check_2"></label>
+													</td>
+													<td>3</td>
+													<td>제목3</td>
+													<td>내용3</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>4</td>
+													<td>제목4</td>
+													<td>내용4</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>5</td>
+													<td>제목5</td>
+													<td>내용5</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="cat-setting__group">
+								<div class="cat-setting__btns spacing--xs">
+									<!-- <button type="button" class="btn btn--primary btn--icon icon-last"></button>
+									<button type="button" class="btn btn--primary btn--icon icon-first"></button> -->
+									<button type="button" class="btn btn--sm btn--primary icon-check">전체 추가</button>
+									<button type="button" class="btn btn--sm btn--primary icon-check">추가</button>
+									<button type="button" class="btn btn--sm btn--primary icon-check">제외</button>
+									<button type="button" class="btn btn--sm btn--primary icon-check">전체 제외</button>
+								</div>
+							</div>
+
+							<div class="cat-setting__group">
+								<!-- <p class="cat-setting__title">전체 상품명</p> -->
+								<div class="cat-setting__body">
+									<div class="cat-setting__box">
+										<div class="table__wrap spacing--xxxs">
+											<table class="table table--split">
+												<tr>
+													<th>
+														<input type="checkbox" id="check_1">
+														<label for="check_1"></label>
+													</th>
+													<th>코드</th>
+													<th>이름</th>
+													<th>인원수</th>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2">
+														<label for="check_2"></label>
+													</td>
+													<td>0001</td>
+													<td>IT 개발 팀</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2">
+														<label for="check_2"></label>
+													</td>
+													<td>0002</td>
+													<td>IT 개발 팀</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>3</td>
+													<td>제목3</td>
+													<td>내용3</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>4</td>
+													<td>제목4</td>
+													<td>내용4</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="checkbox" id="check_2" checked>
+														<label for="check_2"></label>
+													</td>
+													<td>5</td>
+													<td>제목5</td>
+													<td>내용5</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!--Tab 2 Content-->
+					<div class="tab__box">
+						Tab 2 내용
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--푸터-->
+		<div class="footer">
+			<p class="footer__address">서울특별시 중구 세종대로 14 그랜드센트럴 13층 <span>대표전화: 1588-3740</span></p>
+			<span class="footer__copy">Copyright ©2019 Preed Life.co Ltd. All Rights Reserved.</span>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="../js/style.js"></script>
+</body>
+
+</html>

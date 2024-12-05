@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>아트너컨설팅 관리자</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="container">
+
+		<!--헤더-->
+		<div class="header">
+			<div class="header__top">
+				<h1 class="logo">
+					<a href="#">
+						<img class="logo--base" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+						<img class="logo--sm" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+						<img class="logo--symbol" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+					</a>
+				</h1>
+				<div class="login-info">
+					<div class="login-info__initial">
+						<span></span>
+					</div>
+					<div class="login-info__detail">
+						<p class="login-info__name"><em>Admin님</em> <span>환영합니다.</span></p>
+						<div class="login-info__btns">
+							<a href="#" class="login-info__setting">설정</a>
+							<a href="#" class="login-info__logout">로그아웃</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn__menu btn__gnb"><span></span></button>
+			<div class="gnb">
+				<p class="gnb__tit">MENU</p>
+				<ul class="gnb__menu">
+					<li>
+						<button type="button" class="icon-alert"><span>입력사항 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">푸시/메시지 그룹 관리</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-document-check"><span>공지 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-layout"><span>기관 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-person"><span>관리자 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+				</ul>
+				<button type="button" class="icon-left-circle btn__collapse"><span>메뉴접기</span></button>
+			</div>
+			<div class="gnb__bg"></div>
+		</div>
+
+
+		<!--컨텐츠-->
+		<div class="contents">
+			<div class="contents__wrap">
+
+				<!--페이지 상단-->
+				<div class="sub-top">
+					<h3>공지 관리</h3>
+					<div class="sub-top__navi">
+						<span class="icon-home navi--home"></span>
+						<span>공지 관리</span>
+					</div>
+				</div>
+
+				<!--검색박스-->
+				<div class="searchbox spacing--xs">
+					<div class="searchbox__box">
+						<div class="searchbox__frame">
+							<div>
+								<select>
+									<option value="대분류 선택">제목</option>
+									<option value="대분류 선택">선택 Option 1</option>
+									<option value="대분류 선택">선택 Option 2</option>
+								</select>
+							</div>
+							<div class="searchbox__input">
+								<div class="input-btn">
+									<input type="text" placeholder="내용을 입력해주세요">
+									<button type="button" class="btn btn--primary btn--icon icon-search"></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--목록-->
+				<div class="btns btns--right spacing--sm">
+					<button type="button" class="btn btn--sm btn--secondary icon-check">공지 삭제</button>
+					<button type="button" class="btn btn--sm btn--primary icon-check">공지 등록</button>
+				</div>
+				<div class="table__wrap spacing--xxxs">
+					<table class="table table--split" style="min-width:768px;">
+						<tr>
+							<th>
+								<input type="checkbox" id="check_1">
+								<label for="check_1"></label>
+							</th>
+							<th>No</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>등록일자</th>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_2" checked>
+								<label for="check_2"></label>
+							</td>
+							<td>10</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_3" checked>
+								<label for="check_3"></label>
+							</td>
+							<td>9</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_4" checked>
+								<label for="check_4"></label>
+							</td>
+							<td>8</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_5" checked>
+								<label for="check_5"></label>
+							</td>
+							<td>7</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_6" checked>
+								<label for="check_6"></label>
+							</td>
+							<td>6</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_7" checked>
+								<label for="check_7"></label>
+							</td>
+							<td>5</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_8">
+								<label for="check_8"></label>
+							</td>
+							<td>4</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_9">
+								<label for="check_9"></label>
+							</td>
+							<td>3</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_10">
+								<label for="check_10"></label>
+							</td>
+							<td>2</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="checkbox" id="check_11" checked>
+								<label for="check_11"></label>
+							</td>
+							<td>1</td>
+							<td>공지 타이틀</td>
+							<td>홍길동</td>
+							<td>2023-12-28 15:38</td>
+						</tr>
+					</table>
+				</div>
+
+				<!--페이징-->
+				<div class="paging--simple spacing--xs">
+					<a href="#" class="paging__btn icon-first disable">처음</a>
+					<a href="#" class="paging__btn icon-prev disable">이전</a>
+					<a href="#" class="on">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+					<a href="#">5</a>
+					<a href="#" class="paging__btn icon-next">다음</a>
+					<a href="#" class="paging__btn icon-last">마지막</a>
+				</div>
+			</div>
+		</div>
+
+		<!--푸터-->
+		<div class="footer">
+			<p class="footer__address">서울특별시 중구 세종대로 14 그랜드센트럴 13층 <span>대표전화: 1588-3740</span></p>
+			<span class="footer__copy">Copyright ©2019 Preed Life.co Ltd. All Rights Reserved.</span>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="../js/style.js"></script>
+</body>
+
+</html>

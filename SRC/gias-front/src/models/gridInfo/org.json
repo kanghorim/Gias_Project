@@ -1,0 +1,61 @@
+{
+    "name" : "org",
+    "pk" : "no",
+    "type" : "grid",
+    "boardType" : 6,
+    "count" : true,
+    "search" : true,
+    "pagination" : true,
+    "detailPath" : "/notice-view",
+    "colstyle" : ["width:10%", "width:auto", "width:12%;", "width:12%;", "width:12%;"],
+    "header" : ["No", "제목", "작성자", "등록일자"],
+    "cell" : [
+        {
+            "key" : "organizationCode",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "organizationName",
+            "class" : "t-left t-ellipsis",
+            "link" : true
+        },        
+        {
+            "key" : "joinDate",
+            "class" : "",
+            "link" : false
+        },    
+        {
+            "key" : "approver",
+            "class" : "",
+            "link" : false
+        },        
+        {
+            "key" : "state",
+            "class" : "writer",
+            "link" : false
+        },
+        {
+            "key" : "no",
+            "class" : "",
+            "link" : false
+        }, 
+        {
+            "key" : "memberName",
+            "class" : "",
+            "link" : false
+            
+        },
+        {
+            "key" : "approverCount",
+            "class" : "",
+            "link" : false
+            
+        }, 
+        {
+            "key" : "giasState",
+            "class" : "",
+            "link" : false
+        }
+    ]
+}

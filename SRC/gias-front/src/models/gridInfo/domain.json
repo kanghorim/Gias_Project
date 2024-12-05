@@ -1,0 +1,54 @@
+{
+    "name" : "domain",
+    "pk" : "no",
+    "type" : "grid",
+    "boardType" : 6,
+    "count" : true,
+    "search" : true,
+    "pagination" : true,
+    "detailPath" : "/notice-view",
+    "colstyle" : ["width:10%", "width:auto", "width:12%;", "width:12%;", "width:12%;"],
+    "header" : ["도메인코드", "도메인이름", "작성자", "등록일자"],
+    "cell" : [
+        {
+            "key" : "domainCode",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "domainName",
+            "class" : "t-left t-ellipsis",
+            "link" : true
+        },        
+        {
+            "key" : "principleCode",
+            "class" : "",
+            "link" : false
+        },    
+        {
+            "key" : "principleName",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "standardCode",
+            "class" : "writer",
+            "link" : false
+        },
+        {
+            "key" : "standardName",
+            "class" : "",
+            "link" : false
+        },        
+        {
+            "key" : "evaluationCode",
+            "class" : "writer",
+            "link" : false
+        },
+        {
+            "key" : "evaluationName",
+            "class" : "",
+            "link" : false
+        }
+    ]
+}

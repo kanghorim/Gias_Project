@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>프리드라이프 관리자 퍼블리싱</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        body {
+            padding: 30px 2%;
+            background-color: #f5f5f5;
+        }
+
+        .publishing_schedule {
+            padding: 90px 0 60px;
+            background: url(images/common/logo-preed.png) no-repeat right top;
+            background-size: 160px;
+        }
+
+        .publishing_schedule table {
+            width: 100%;
+            background-color: #fff;
+            margin-bottom: 60px;
+        }
+
+        .publishing_schedule-top {
+            margin-bottom: 10px;
+        }
+
+        .publishing_schedule-top:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .publishing_schedule-top p {
+            float: left;
+            color: #011526;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .publishing_schedule-top span {
+            display: block;
+            float: right;
+            font-weight: 400;
+            font-size: 16px;
+            margin-top: 2px;
+            color: #666;
+        }
+
+        .publishing_schedule thead {
+            background-color: #011526;
+            color: #fff;
+        }
+
+        .publishing_schedule thead th {
+            font-weight: 500;
+            color: #fff;
+            background-color: #011526;
+        }
+
+        .publishing_schedule tbody tr {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .publishing_schedule tbody td a {
+            text-decoration: underline;
+        }
+
+        .publishing_schedule th,
+        .publishing_schedule td {
+            padding: 14px 10px;
+            border-right: 1px solid #e5e5e5;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .publishing_schedule th:last-child,
+        .publishing_schedule td:last-child {
+            border-right: none;
+        }
+
+        .publishing_schedule td:last-child {
+            text-align: left;
+        }
+
+        .publishing_schedule td:nth-child(2) {
+            text-align: left;
+        }
+
+        .new {
+            background-color: #eaf1fd;
+        }
+
+        .notice {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="publishing_schedule">
+        <div class="publishing_schedule-top">
+            <p>프리드라이프 관리자</p>
+            <span>LAST UPDATE : 2023.12.19</span>
+        </div>
+        <table>
+            <colgroup>
+                <col style="width: 5%;">
+                <col style="width: 18%;">
+                <col style="width: 20%;">
+                <col style="width: 8%;">
+                <col style="width: 12%;">
+                <col style="width: auto;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>페이지명</th>
+                    <th>경로</th>
+                    <th>코딩</th>
+                    <th>날짜</th>
+                    <th>메모</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td></td>
+                    <td>푸시/메시지 그룹 관리</td>
+                    <td><a href="html/001.admin_Push-Message_list.html" target="_blank">admin_Push-Message_list.html</a>
+                    </td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/push-groupManage</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>푸시/메시지 발송</td>
+                    <td><a href="html/001.admin_Push-Message_Searchbox.html"
+                            target="_blank">admin_Push-Message_Searchbox.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/push-group</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>푸시/메시지 발송</td>
+                    <td><a href="html/001.admin_Push-Message_Tabbox.html"
+                            target="_blank">admin_Push-Message_Tabbox.html</a></td>
+                    <td>푸시메시지관리 화면의 푸시발송버튼</td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/push-sandnewmsg</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>관리자 관리</td>
+                    <td><a href="html/002.admin_AdminManagement_list.html"
+                            target="_blank">admin_AdminManagement_list.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/admin</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>공지 관리</td>
+                    <td><a href="html/003.admin_Board-Message_list.html"
+                            target="_blank">admin_Board-Message_list.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/notice</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>공지 등록</td>
+                    <td><a href="html/003.admin_Board-Write.html" target="_blank">admin_Board-Write.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/notice-register</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>배너 관리</td>
+                    <td><a href="html/004.admin_BannerManagement_list.html"
+                            target="_blank">BannerManagement_list.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/banner</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>배너 등록</td>
+                    <td><a href="html/004.admin_Banner-Write.html" target="_blank">admin_Banner-Write.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td>http://localhost:8080/banner-register</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>로그인</td>
+                    <td><a href="html/login.html" target="_blank">login.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>아이디/비밀번호 찾기</td>
+                    <td><a href="html/find.html" target="_blank">find.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>회원가입</td>
+                    <td><a href="html/join.html" target="_blank">join.html</a></td>
+                    <td></td>
+                    <td>2023.12.19</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('tbody td:first-child').each(function () {
+                var trIndex = $(this).parent('tr').index();
+                $(this).html(trIndex + 1);
+            })
+        })
+    </script>
+</body>
+
+</html>

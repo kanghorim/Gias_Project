@@ -1,0 +1,101 @@
+/***페이징***/
+.paging{
+	text-align: center;
+	.paging__btn{
+		font-size: 0;
+		min-width: 24px;
+		width: 24px;
+		height: 28px;
+		padding: 8px 0 0;
+		border: none;
+		&:before{
+			display: inline-block;
+			font-size: $font-xxs;
+			margin-right: 0;
+			color: $color-primary;
+			font-weight: $font-bold;
+		}
+		&:hover:before{
+            color: darken($color-primary,8%);
+		}
+        &.disable:before{
+            color: $grey-4;
+        }
+        &.icon-first,
+        &.icon-last{
+            min-width: 20px;
+            width: 20px;
+        }
+	}
+	> a, > button{
+		display: inline-block;
+		border: 1px solid $grey-3;
+		text-align: center;
+		vertical-align: middle;
+		min-width: 28px;
+		height: 28px;
+		font-size: $font-sm;
+		padding: 5px $space-xxxs 0;
+		border-radius: $radius-xs;
+		&:hover{
+			border-color: $color-primary;
+		}
+		@include breakpoint(xs){
+			font-size: $font-xs;
+		}
+		
+		&.on{
+			border-color: $color-primary;
+			background-color: $color-primary;
+			color: $white;
+		}
+	}
+}
+
+.paging--simple{
+    text-align: center;
+    a{
+        display: inline-block;
+        font-size: $font-sm;
+        vertical-align: middle;
+        min-width: 24px;
+        height: 24px;
+        padding: 4px $space-xxxs 0;
+        text-align: center;
+        border-radius: 100px;
+        color: $grey-9;
+        &:hover{
+            background-color: $grey-1;
+        }
+        
+        
+        &.on{
+            background-color: $color-primary;
+            color: $white;
+        }
+    }
+    .paging__btn{
+        width: 18px;
+        min-width: auto;
+        font-size: 0;
+        color: $color-primary;
+        padding-top: 7px;
+        &:before{
+            margin: 0;
+            font-size: 10px;
+        }
+        &:hover{
+            background-color: transparent;
+            color: darken($color-primary,8%);
+        }
+        &.disable{
+            color: $grey-6;
+            &:hover{
+                color: $grey-6;
+            }
+        }
+        
+    }
+}
+
+

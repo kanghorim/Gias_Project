@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>아트너컨설팅 관리자</title>
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 우측 상단 저장 버튼 */
+        .save-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #2e7d32;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .save-button:hover {
+            background-color: #1b5e20;
+        }
+
+        .tree-item {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: bold;
+            word-break: break-word;
+            text-align: center;
+        }
+
+        .tree-item-title {
+            width: 100%;
+            text-align: center;
+            font-weight: normal;
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        .sub-item,
+        .sub-sub-item,
+        .sub-sub-sub-item,
+        .sub-sub-sub-sub-item {
+            margin-left: 20px;
+            padding: 8px;
+            background-color: #e0e0e0;
+            border: 1px solid #bcbcbc;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .detail-view {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .detail-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .detail-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-area {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-area textarea {
+            width: 100%;
+            height: 120px;
+            resize: none;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .input-number {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-number label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input-number input {
+            width: 100px;
+            padding: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="container">
+
+		<!--헤더-->
+		<div class="header">
+			<div class="header__top">
+				<h1 class="logo">
+					<a href="#">
+						<img class="logo--base" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+						<img class="logo--sm" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+						<img class="logo--symbol" src="../images/common/artner_consulting_logo_transparent.png" alt="SuBPay">
+					</a>
+				</h1>
+				<div class="login-info">
+					<div class="login-info__initial">
+						<span></span>
+					</div>
+					<div class="login-info__detail">
+						<p class="login-info__name"><em>Admin님</em> <span>환영합니다.</span></p>
+						<div class="login-info__btns">
+							<a href="#" class="login-info__setting">설정</a>
+							<a href="#" class="login-info__logout">로그아웃</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn__menu btn__gnb"><span></span></button>
+			<div class="gnb">
+				<p class="gnb__tit">MENU</p>
+				<ul class="gnb__menu">
+					<li>
+						<button type="button" class="icon-alert"><span>입력사항 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">푸시/메시지 그룹 관리</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-document-check"><span>공지 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-layout"><span>기관 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+					<li>
+						<button type="button" class="icon-person"><span>관리자 관리</span></button>
+						<!-- <ul>
+							<li><a href="#">매뉴1</a></li>
+							<li><a href="#">매뉴2</a></li>
+						</ul> -->
+					</li>
+				</ul>
+				<button type="button" class="icon-left-circle btn__collapse"><span>메뉴접기</span></button>
+			</div>
+			<div class="gnb__bg"></div>
+		</div>
+
+
+		<!--컨텐츠-->
+		<div class="contents contents--full">
+			<div class="contents__wrap">
+
+				<!--페이지 상단-->
+				<div class="sub-top">
+					<h3>입력사항 관리</h3>
+					<div class="sub-top__navi">
+						<span class="icon-home navi--home"></span>
+						<span>입력사항 관리</span>
+						<span>입력사항 상세 관리</span>
+					</div>
+				</div>
+
+				<div class="container">
+					<!-- 저장 버튼 -->
+					<button class="save-button">Save</button>
+			
+					<!-- 하드코딩된 트리 구조 -->
+					<div class="tree-item" onclick="toggleSubItem('principle1')">
+						<div class="tree-item-title">Principle 1: Integrity</div>
+					</div>
+					<div id="principle1" class="sub-item">
+						<div class="tree-item" onclick="toggleSubItem('standard1_1')">
+							<div class="tree-item-title">Standard 1.1: Honesty and Courage</div>
+						</div>
+						<div id="standard1_1" class="sub-sub-item">
+							<div class="tree-item" onclick="toggleSubItem('evaluation1_1_1')">
+								<div class="tree-item-title">Evaluation 1.1.1: Ethical Decision Making</div>
+							</div>
+							<div id="evaluation1_1_1" class="sub-sub-sub-item">
+								<div class="tree-item" onclick="toggleSubItem('evaluation1_1_1_1')">
+									<div class="tree-item-title">Evaluation 1.1.1.1: Final Assessment</div>
+								</div>
+								<div id="evaluation1_1_1_1" class="sub-sub-sub-sub-item">
+									<div class="detail-view">
+										<div class="detail-header">Input form for Evaluation 1.1.1.1</div>
+										<div class="detail-content">
+											<div class="input-area">
+												<textarea placeholder="Enter input here"></textarea>
+											</div>
+											<div class="input-number">
+												<label for="score-input">Score:</label>
+												<input id="score-input" type="number" placeholder="Enter score">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 하드코딩된 트리 구조 -->
+					<div class="tree-item" onclick="toggleSubItem('principle2')">
+						<div class="tree-item-title">Principle 2: Integrity</div>
+					</div>
+					<div id="principle2" class="sub-item">
+						<div class="tree-item" onclick="toggleSubItem('standard2_1')">
+							<div class="tree-item-title">Standard 2.1: Honesty and Courage</div>
+						</div>
+						<div id="standard2_1" class="sub-sub-item">
+							<div class="tree-item" onclick="toggleSubItem('evaluation2_1_1')">
+								<div class="tree-item-title">Evaluation 2.1.1: Ethical Decision Making</div>
+							</div>
+							<div id="evaluation2_1_1" class="sub-sub-sub-item">
+								<div class="tree-item" onclick="toggleSubItem('evaluation2_1_1_1')">
+									<div class="tree-item-title">Evaluation 2.1.1.1: Final Assessment</div>
+								</div>
+								<div id="evaluation2_1_1_1" class="sub-sub-sub-sub-item">
+									<div class="detail-view">
+										<div class="detail-header">Input form for Evaluation 2.1.1.1</div>
+										<div class="detail-content">
+											<div class="input-area">
+												<textarea placeholder="Enter input here"></textarea>
+											</div>
+											<div class="input-number">
+												<label for="score-input">Score:</label>
+												<input id="score-input" type="number" placeholder="Enter score">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--푸터-->
+		<div class="footer">
+			<p class="footer__address">서울특별시 중구 세종대로 14 그랜드센트럴 13층 <span>대표전화: 1588-3740</span></p>
+			<span class="footer__copy">Copyright ©2019 Preed Life.co Ltd. All Rights Reserved.</span>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="../js/style.js"></script>
+	<script>
+        function toggleSubItem(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

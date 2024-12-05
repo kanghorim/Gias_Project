@@ -1,0 +1,881 @@
+//인풋 기본 스타일
+input,select{
+	padding-left: $inputbox-indent;
+	height: $inputbox-height;
+	transition: $ease-duration;
+	border: 1px solid $input-border;
+	border-radius: $radius-xs;
+	font-size: $font-sm;
+	line-height: normal;
+	background: $white;
+	@include cursor-access{
+		border-color: $color-primary;
+		outline: none;
+	}
+	@include breakpoint(sm){
+		padding-left: $inputbox-indent-sm;
+		font-size: $font-sm;
+	}
+	&::placeholder{
+		font-size: $font-xs;
+		color: $grey-4;
+	}
+	&:focus::placeholder{
+		opacity: 0;
+	}
+}
+textarea{
+    border: 1px solid $input-border;
+    padding: $inputbox-indent;
+    font-size: $font-sm;
+    line-height: 1.5;
+    &::placeholder{
+		font-size: $font-xs;
+		color: $grey-4;
+	}
+    @include cursor-access{
+		border-color: $color-primary;
+		outline: none;
+	}
+}
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    &::-ms-expand{
+        display: none;
+    }
+    padding-right: $space-md;
+	background: url(../images/common/icon-dropdown.png) no-repeat right center $white;
+}
+
+
+/***사이즈***/
+.input--sm{
+	height: $inputbox-height-sm;
+	padding-left: $inputbox-indent-sm;
+}
+.input--md{
+	height: $inputbox-height-md;
+}
+.input--full{
+	width: 100%;
+}
+
+
+
+/***기타 인풋 스타일***/
+//인풋 + 버튼
+.input-btn{
+    @include float-wrap;
+    input{
+        float: left;
+        width: calc(100% - #{$space-xxxs} - #{$inputbox-height});
+    }
+    button{
+        float: right;
+    }
+
+}
+
+
+//인풋 셋
+.input-set{
+    @include float-wrap;    
+    > *{
+        float: left;
+    }
+    span{
+        width: 36px;
+        text-align: center;
+        font-size: $font-md;
+        padding-top: $space-xxs;
+    }
+    
+    //인풋 셋 - 기간
+    &.input-set--period{
+        input{
+            width: calc(50% - 18px);
+        }
+    }
+	
+	//인풋 셋 - 날짜
+    &.input-set--date{
+        input{
+            width: 100%;
+        }
+    }
+
+    //인풋 셋 - 모바일
+    &.input-set--cell{
+        select,input{
+            width: calc(40% - 30px);  
+            &:first-child{
+                width: 20%;
+            }
+        }
+        span{
+            width: 30px;
+        }
+    }
+
+    //인풋 셋 - 셀렉트 + 인풋
+    &.input-set--select{
+        > *{
+            &:first-child{
+                width: 35%;
+            }
+            &:last-child{
+                margin-left: $space-xxxs;
+                width: calc(65% - #{$space-xxxs});
+            }
+        }
+    }
+    
+    //인풋 셋 - 이메일
+    &.input-set--email{
+        input{
+            width: 30%;
+        }
+        select{
+            float: right;
+            width: calc(40% - #{$space-xxxs} - 30px);
+        }
+        span{
+            width: 30px;
+            font-size: $font-base;
+        }
+    }
+
+	//인풋 셋 - 링크
+	&.input-set--http{
+		border: 1px solid $input-border;
+		padding-left: $inputbox-indent;
+		input{
+			border: none;
+			padding-left: $space-xxxs;
+			font-weight: $font-medium;
+			width: 300px;
+		}
+		pre{
+			vertical-align: middle;
+			line-height: $inputbox-height;
+			font-weight: $font-medium;
+			font-size: $font-sm;
+		}
+	}
+}
+
+
+//서치박스
+.search-box{
+    @include float-wrap;
+    border: 1px solid $input-border;
+    height: $inputbox-height;
+    overflow: hidden;
+    &:focus-within{
+        border-color: $color-primary;
+        button{
+            color: $color-primary;
+        }
+    }
+    input{
+        float: left;
+        width: calc(100% - #{$inputbox-height});
+        border: none;
+    }
+    button{
+        float: left;
+    }
+    &.search-box--round{
+        border-radius: 100px;
+        input{
+            padding-left: $space-xs;
+        }
+        button:before{
+           padding-right: $space-xxs;
+        }
+    }
+    
+    &.search-box--mobile{
+        @include icon(search);
+        position: relative;
+        height: 36px;
+        border-radius: 100px;
+        &:before{
+            position: absolute;
+            left: 12px;
+            font-size: $font-sm;
+            top: calc(50% - #{$font-sm} * 0.5);
+        }
+        &:focus-within{
+            &:before{
+                opacity: 0;
+            }
+            input{
+                padding-left: $space-xs;
+            }
+            button{
+                opacity: 1;
+            }
+        }
+        input{
+            height: 100%;
+            width: calc(100% - 30px);
+            padding-left: 36px;
+        }
+        button{
+            width: 30px;
+            height: 100%;
+            font-size: $font-xs;
+            text-align: left;
+            padding-left: $space-xxxs;
+            opacity: 0;
+            &:before{
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+//서치박스 - 우측정렬
+.search-right{
+    text-align: right;
+    .search-box{
+        display: inline-block;
+        width: 100%;
+        max-width: 240px;
+        border-radius: $radius-xs;
+    }
+    .input-set--select{
+        display: inline-block;
+        width: 100%;
+        max-width: 320px;
+        .search-box{
+            max-width: 100%;
+        }
+    }
+}
+
+
+
+//인풋그룹
+.input-box{
+    margin-bottom: $space-sm;
+    @include breakpoint(xs){
+         margin-bottom: $space-xs;
+    }
+    &:focus-within{
+        label{
+            color: $color-primary;
+        }
+        input{
+            border-color: $color-primary;
+        }
+    }
+    label{
+        font-size: $font-xs;
+        display: block;
+        font-weight: $font-medium;
+        margin-bottom: $space-xxs;
+    }
+    input{
+        width: 100%;
+		&[disabled]{
+			background-color: $grey-1;
+		}
+    }
+}
+
+.input-line{
+	border-bottom: 2px solid $grey-7;
+	padding-right: $space-xxxs;
+	transition: border $ease-duration;
+	&:focus-within{
+		border-bottom-color: $color-primary;
+	}
+	input{
+		display: inline-block;
+		width: 60px;
+		border: 0;
+		height: $inputbox-height-sm;
+		font-weight: $font-medium;
+		font-size: $font-md;
+		text-align: center;
+	}
+	span{
+		font-weight: $font-bold;
+	}
+	
+}
+
+.input-wrap{
+    position: relative;
+    border: 1px solid $input-border;
+    border-radius: $radius-xs;
+    width: 100%;
+    height: $inputbox-height;
+    margin-top: $space-md;
+    label{
+        position: absolute;
+        left: $space-xxs;
+        top: 12px;
+        font-size: $font-xs;
+        font-weight: $font-medium;
+        transition: $ease-duration;
+    }
+    input{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: transparent;
+        z-index: 1;
+    }
+    &.on{
+        border-color: $color-primary;
+        label{
+            position: absolute;
+            top: -16px;
+            left: 0;
+            font-size: $font-xxs;
+            color: $color-primary;
+        }
+    }
+}
+.input-box__wrap{
+    @include float-wrap;
+}
+.input-wrap--half{
+    float: left;
+    width: 48%;
+    &.input-wrap--half-right{
+        margin-left: 4%;
+    }
+}
+.input-wrap--full{
+    float: left;
+    clear: both;
+}
+
+
+.input-box__wrap--double{
+    @include float-wrap;
+    .input-box,.input-wrap,.input-box__comp{
+        float: left;
+        width: 48%;
+        &:nth-child(2n){
+            float: right;
+        }
+        @include breakpoint(xs){
+            width: 100%;
+        }
+    }
+}
+
+.input-box__comp{
+	min-height: 58px;
+	.input-box__label{
+		margin-bottom: $space-xxs;
+	}
+}
+.input-box__label{
+	font-size: $font-xxs;
+	display: block;
+	font-weight: $font-medium;
+	margin-bottom: $space-xxxs;
+}
+
+//인풋 컨테이너 
+.inputs{
+    border: 1px solid $grey-4;
+    border-radius: $radius-sm;
+    padding: $space-md $space-lg;
+    @include breakpoint(sm){
+        padding: $space-md $space-sm;
+    }
+    @include breakpoint(xs){
+        padding: $space-sm $space-xs;
+    }
+    .inputs__top{
+        margin-bottom: $space-lg;
+        @include breakpoint(sm){
+            margin-bottom: $space-md;
+        }
+    }
+    .inputs__title{
+        font-size: $font-md;
+        font-weight: $font-medium;
+    }
+    .inputs__desc{
+        font-size: $font-sm;
+        color: $grey-8;
+        font-weight: $font-light;
+        margin-top: $space-xxs;
+    }
+}
+
+
+
+/***파일첨부***/
+//첨부파일 버튼
+.attach-btn{
+    display: none;
+	& ~ .attach-list{
+		 margin-top: $space-xxs;
+	}
+}
+.attach-list{
+    li{
+        margin-top: $space-xxxs;
+        &:first-child{
+            margin-top: 0;
+        }
+        span{
+            font-size: $font-xs;
+            line-height: 1.2;
+            word-break: break-all;
+			font-weight: $font-medium;
+        }
+        button{
+            display: inline-block;
+            margin-left: $space-xxxs;
+            padding: 2px;
+            vertical-align: middle;
+            &:before{
+                text-align: center;
+                color: $color-alert;
+                font-size: $font-xxs;
+                display: block;
+                margin: 0 auto;
+                transition: color $ease-duration;
+            }
+            &:hover:before{
+                color: darken($color-alert,20%);
+            }
+        }
+    }
+}
+
+
+//첨부파일 박스
+.attach-box{
+    position: relative;
+    width: 160px;
+    height: 160px;
+    
+    input,label{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    input[type="file"]{
+        opacity: 0;
+        padding: 0;
+    }
+    label{
+        display: table;
+        text-align: center;
+        span{
+            @include icon(upload);
+            display: table-cell;
+            vertical-align: middle;
+            background-color: $grey-1;
+            border: 2px dashed $grey-4;
+            border-radius: $radius-xs;
+            font-size: $font-sm;
+            color: $grey-5;
+            &:before{
+                display: block;
+                margin: 0 0 $space-xxs 0;
+                font-size: $font-xl;
+            }
+        }
+    }
+    .attach-box__img{
+        position: absolute;
+        width: 100%;
+		height: 100%;
+		object-fit: cover;
+        border-radius: $radius-xs;
+    }
+    .attach-box__del{
+        position: absolute;
+        right: $space-xxxs;
+        top: $space-xxxs;
+        background-color: rgba($color-text,0.6);
+        color: $white;
+        border-radius: 100%;
+        transition: $ease-duration;
+        &:hover{
+            background-color: rgba($color-text,0.8);
+        }
+        &:before{
+            display: block;
+            margin: 0;
+            font-size: $font-xxs;
+            padding: $space-xxxs;
+        }
+    }
+}
+
+
+//파일첨부 그룹
+.attachments{
+	@include float-wrap;
+	margin-bottom: $space-xxs;
+	.attachments__wrap{
+		float: left;
+		margin: 0 $space-xs $space-xs 0;
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}
+.attachments__wrap{
+	width: 140px;
+	@include breakpoint(xs){
+		width: 100px;
+	}
+	.attach-box{
+		width: 140px;
+		height: 140px;
+		margin-bottom: $space-xxs;
+		@include breakpoint(xs){
+			width: 100px;
+			height: 100px;
+		}
+	}
+}
+.attachments__label{
+	font-size: $font-xxs;
+	font-weight: $font-medium;
+	color: $grey-8;
+	margin-bottom: $space-xxxs;
+	white-space: nowrap;
+}
+
+
+
+
+/***radio button***/
+//라디오버튼 기본 커스텀 스타일
+input[type="radio"]{
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	-webkit-appearance: none;
+	
+	& + label{
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		padding-left: calc(16px + #{$space-xxs}); 
+		&:before{
+			content: "";
+			position: absolute;
+			display: block;
+			width: 15px;
+			height: 15px;
+			left: 0;
+			top: 0;
+			border: 1px solid $grey-5;
+			border-radius: 100px;
+		}
+		&:after{
+			content: "";
+			display: block;
+			position: absolute;
+			opacity: 0;
+			width: 9px;
+			height: 9px;
+			left: 4px;
+			top: 4px;
+			border-radius: 100px;
+			background-color: $color-primary;
+			transition: 0.3s;
+		}
+	}
+	&:checked + label:after{
+		opacity: 1;
+	}
+}
+
+
+
+
+/***checkbox***/
+//체크박스 기본 커스텀 스타일
+input[type="checkbox"]{
+	-webkit-appearance: none;
+	opacity: 0;
+	position: absolute;
+    height: auto;
+	& + label{
+		@include icon(check);
+		position: relative;
+		display: inline-block;
+		vertical-align: text-top;
+		padding: 2px 0 0 calc(#{$space-xxs} + 16px);
+        font-size: $font-sm;
+		@include breakpoint(sm){
+			font-size: $font-xs;
+		}
+		&:after{
+			content: "";
+			display: inline-block;
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			left: 0;
+			top: 0;
+			background-color: $white;
+			border: 1px solid $grey-5;
+			border-radius: $radius-xs;
+			transition: $ease-duration;
+		}
+		&:before{
+			display: block;
+			position: absolute;
+			text-align: center;
+			font-size: 11px;
+			left: 0;
+			top: 0;
+            width: 18px;
+            height: 18px;
+			padding: 0 !important;
+            line-height: 19px;
+			font-weight: $font-bold;
+			z-index: 1;
+			transition: $ease-duration;
+			opacity: 0;
+			color: $white;
+		}
+	}
+	&:checked{
+		& + label{
+            &:after{
+                border-color: $color-primary;
+                background-color: $color-primary;
+            }
+            &:before{
+			    opacity: 1;
+            }
+		}
+	}
+}
+
+
+//체크박스 - 박스
+.check-all{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    padding: 11px $space-xs 0;
+    input[type="checkbox"]{
+        & + label{
+            position: static;
+            padding-left: calc(16px + #{$space-xxs});
+            &:after{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 1px solid $grey-4;
+                border-radius: $radius-sm;
+                background: none;
+            }
+            &:before{
+                left: $space-xs;
+                top: calc(50% - 8px);
+            }
+            span:before{
+                content: "";
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                left: $space-xs;
+                top: calc(50% - 8px);
+                border: 1px solid $grey-5;
+                border-radius: $radius-xs;
+			    transition: $ease-duration;
+            }
+        }
+        &:checked + label{
+            &:after{
+                border-color: $color-primary;
+            }
+            span:before{
+                border-color: $color-primary;
+                background-color: $color-primary;
+            }
+        }
+    }
+}
+
+
+//스위치
+input.switch{
+    & + label{
+        width: 40px;
+        height: 20px;
+        padding-left: 40px;
+        &:before{
+            content: "";
+            width: 16px;
+            height: 16px;
+            background-color: $white;
+            opacity: 1;
+            border-radius: 100%;
+            top: 2px;
+            left: 2px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        &:after{
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 100px;
+            background-color: $grey-4;
+        }
+        span{
+            display: inline-block;
+            margin-left: $space-xxs;
+        }
+    }
+    
+    &:checked + label{
+        &:before{
+            left: 22px;
+        }
+        &:after{
+            background-color: $color-primary;
+        }
+    }
+    
+    //on/off text
+    &.switch--label {
+        & + label span{
+            &:before,&:after{
+                position: absolute;
+                display: block;
+                font-size: 7px;
+                font-weight: $font-bold;
+                top: 7px;
+                z-index: 1;
+                transition: opacity $ease-duration;
+            }
+            &:before{
+                content: "OFF";
+                color: $grey-6;
+                left: 21px;
+            }
+            &:after{
+                content: "ON";
+                color: $white;
+                left: 7px;
+                opacity: 0;
+            }
+        }
+        &:checked + label span{
+            &:before{
+                opacity: 0;
+            }
+            &:after{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+//체크박스 & 라디오버튼 그룹
+.checkboxes--vertical li{
+	margin-bottom: $space-xs;
+	&:last-child{
+		margin-bottom: 0;
+	}
+}
+.checkboxes--horizontal li{
+	display: inline-block;
+	margin: $space-xxxs $space-md $space-xxxs 0;
+}
+.checkboxes-input{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+//체크박스 & 라디오버튼 텍스트 입력박스
+.checkbox-input{
+	display: inline-block;
+	input[type="radio"]:focus ~ .input-line {
+		border-bottom-color: $color-primary;
+	}
+	.input-line{
+		vertical-align: middle;
+		height: 32px;
+		display: inline-block;
+		margin: 0 $space-sm 0 $space-xxxs;
+		input{
+			background: transparent;
+		}
+		span{
+			vertical-align: text-top;
+		}
+	}
+}
+
+
+
+
+/***우측 옵션***/
+.select--right-top,.select--right-bottom{
+    text-align: right;
+    select{
+        min-width: 180px;
+    }
+}
+.select--right-top{
+    margin-bottom: $space-xxs;
+}
+.select--right-bottom{
+    margin-top: $space-xxs;
+}
+
+
+//라벨
+.input-label{
+	font-size: $font-xs;
+	display: block;
+	font-weight: $font-medium;
+	margin-bottom: $space-xxs;
+}
+.input-notice{
+	@include icon(info);
+	font-size: $font-xs;
+	margin-top:$space-xxxs;
+	color: $grey-7;
+	&:before{
+		font-size: $font-xxs;
+		vertical-align: middle;
+	}
+}
+.essential{
+	color: $color-alert;
+}
+
+
+//추가인풋
+.input-add .input-add__box{
+	@include float-wrap;
+	margin-bottom: $space-xxxs;
+	input{
+		float: left;
+		width: calc(100% - #{$inputbox-height} - #{$space-xxs});
+	}
+	button{
+		float: right;
+	}
+}
+

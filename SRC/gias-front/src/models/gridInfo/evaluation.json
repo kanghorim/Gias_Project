@@ -1,0 +1,24 @@
+{
+    "name" : "evaluation",
+    "pk" : "no",
+    "type" : "grid",
+    "boardType" : 6,
+    "count" : true,
+    "search" : true,
+    "pagination" : true,
+    "detailPath" : "/notice-view",
+    "colstyle" : ["width:10%", "width:auto", "width:12%;", "width:12%;", "width:12%;"],
+    "header" : ["평가코드", "평가이름", "작성자", "등록일자"],
+    "cell" : [
+        {
+            "key" : "evaluationCode",
+            "class" : "",
+            "link" : false
+        },
+        {
+            "key" : "evaluationName",
+            "class" : "t-left t-ellipsis",
+            "link" : true
+        }
+    ]
+}
