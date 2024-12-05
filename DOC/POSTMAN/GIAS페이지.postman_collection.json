@@ -1,0 +1,1496 @@
+{
+	"info": {
+		"_postman_id": "41810edb-d64f-4536-b034-95951aab5e96",
+		"name": "GIAS페이지",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38943177"
+	},
+	"item": [
+		{
+			"name": "공지사항",
+			"item": [
+				{
+					"name": "공지사항 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/notice/selectNoticeList?search=&typeCd=&",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"selectNoticeList"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "typeCd",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "공지사항 상세조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/notice/selectNoticeView?noticeCode=N00063",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"selectNoticeView"
+							],
+							"query": [
+								{
+									"key": "noticeCode",
+									"value": "N00063"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "공지사항 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noticeCode",
+									"value": "N00063",
+									"type": "text"
+								},
+								{
+									"key": "memberCode",
+									"value": "B00008",
+									"type": "text"
+								},
+								{
+									"key": "noticeTitle",
+									"value": "vuetest수정",
+									"type": "text"
+								},
+								{
+									"key": "noticeContent",
+									"value": "vuetest 내용수정",
+									"type": "text"
+								},
+								{
+									"key": "noticeInputFile",
+									"type": "file",
+									"src": "/C:/Users/seung/Pictures/Screenshots/스크린샷 2024-10-25 075801.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/notice/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "공지사항삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"noticeCode\": \"N00012\"\r\n    },\r\n    {\r\n        \"noticeCode\": \"N00014\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/notice/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "공지사항 조회_페이징",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.37:8081/notice/vueList?pageNo=1&countPerRecord=10&search=공단&typeCd=title&organizationCode=A00004&userGrade=sAdmin&",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"37"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"vueList"
+							],
+							"query": [
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "countPerRecord",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "공단"
+								},
+								{
+									"key": "typeCd",
+									"value": "title"
+								},
+								{
+									"key": "organizationCode",
+									"value": "A00004"
+								},
+								{
+									"key": "userGrade",
+									"value": "sAdmin"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "공지사항저장",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "memberCode",
+									"value": "B00008",
+									"type": "text"
+								},
+								{
+									"key": "noticeTitle",
+									"value": "11월21일파일추가",
+									"type": "text"
+								},
+								{
+									"key": "noticeContent",
+									"value": "11월21일내용",
+									"type": "text"
+								},
+								{
+									"key": "noticeInputFile",
+									"type": "file",
+									"src": "/C:/Users/seung/Pictures/Screenshots/스크린샷 2024-10-16 104816.png"
+								},
+								{
+									"key": "noticeFileName",
+									"value": "파일이름",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/notice/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"notice",
+								"write"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GIAS입력창",
+			"item": [
+				{
+					"name": "domain조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/selectGiasDomainAjax",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"selectGiasDomainAjax"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "principle조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/selectGiasPrincipleAjax?domainCode=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"selectGiasPrincipleAjax"
+							],
+							"query": [
+								{
+									"key": "domainCode",
+									"value": "4"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Standard조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/selectGiasStandardAjax",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"selectGiasStandardAjax"
+							],
+							"query": [
+								{
+									"key": "principleCode",
+									"value": "101",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Evaluation조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.37:8081/gias/selectGiasEvaluationAjax?standardCode=101101",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"37"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"selectGiasEvaluationAjax"
+							],
+							"query": [
+								{
+									"key": "standardCode",
+									"value": "101101"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "gias저장",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "[\n    {\n        \"evaluationCode\": \"1.1.1\",\n        \"organizationCode\": \"A00001\",\n        \"memberCode\": \"B00008\",\n        \"evaluationCurrent\": \"현황 1.1.1\",\n        \"evaluationScore\": 5,\n        \"evaluationImp\": \"개선사항 1.1.1\"\n    },\n    {\n        \"evaluationCode\": \"1.1.2\",\n        \"organizationCode\": \"A00001\",\n        \"memberCode\": \"B00008\",\n        \"evaluationCurrent\": \"현황 1.1.2\",\n        \"evaluationScore\": 3,\n        \"evaluationImp\": \"개선사항 1.1.2\"\n    }\n]",
+									"type": "text"
+								},
+								{
+									"key": "memberCode",
+									"value": "B00008",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "organizationCode",
+									"value": "A00001",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCode",
+									"value": "1.1.1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCurrent",
+									"value": "1.1.1현황",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationScore",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationImp",
+									"value": "1.1.1개선사항",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationFile1",
+									"type": "file",
+									"src": "/C:/Users/seung/Pictures/Screenshots/스크린샷 2024-10-31 091710.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/gias/insertGias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"insertGias"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "사용자가 저장한 품질평가 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/evlOrgList?memberCode=B00008",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"evlOrgList"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00008"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "gias수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "organizationCode",
+									"value": "A00001",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCode",
+									"value": "1.1.2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCurrent",
+									"value": "1.1.2수우정",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationScore",
+									"value": "5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationImp",
+									"value": "1.1.2개선사항 수우정",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data",
+									"value": "[\n    {\n        \"evaluationCode\": \"1.1.1\",\n        \"organizationCode\": \"A00001\",\n        \"memberCode\": \"B00008\",\n        \"evaluationCurrent\": \"현황 1.1.1111111111\",\n        \"evaluationScore\": 5,\n        \"evaluationImp\": \"개선사항 1.1.11111111\"\n    },\n    {\n        \"evaluationCode\": \"1.1.2\",\n        \"organizationCode\": \"A00001\",\n        \"memberCode\": \"B00008\",\n        \"evaluationCurrent\": \"현황 1.1.222222222\",\n        \"evaluationScore\": 3,\n        \"evaluationImp\": \"개선사항 1.1.2222222222\"\n    }\n]",
+									"type": "text"
+								},
+								{
+									"key": "checkString",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "memberCode",
+									"value": "B00008",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/gias/updateGias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"updateGias"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "승인된 품질평가 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/memberApprove?memberCode=B00008",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"memberApprove"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00008"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "gias파일저장",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "evaluationFile1",
+									"type": "file",
+									"src": "/C:/Users/seung/Pictures/Screenshots/스크린샷 2024-10-31 091710.png"
+								},
+								{
+									"key": "data",
+									"value": "[\n    {\n        \"evaluationCode\": \"1.1.1\",\n        \"organizationCode\": \"A00001\",\n        \"memberCode\": \"B00008\",\n        \"evaluationCurrent\": \"현황 1.1.1\",\n        \"evaluationScore\": 5,\n        \"evaluationImp\": \"개선사항 1.1.1\"\n    }\n]",
+									"type": "text"
+								},
+								{
+									"key": "memberCode",
+									"value": "B00008",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "organizationCode",
+									"value": "A00001",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCode",
+									"value": "1.1.1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationCurrent",
+									"value": "1.1.1현황",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationScore",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "evaluationImp",
+									"value": "1.1.1개선사항",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/gias/insertGiasFile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"insertGiasFile"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "관리자가 보는 전체 품질평가 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/giasAllData",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"giasAllData"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "관리자가 보는 기관이 저장한 품질평가 조회",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/gias/adminEvlOrgList?organizationCode=A00001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"gias",
+								"adminEvlOrgList"
+							],
+							"query": [
+								{
+									"key": "organizationCode",
+									"value": "A00001"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "회원/기관",
+			"item": [
+				{
+					"name": "사용자회원가입",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"asdasd\",\r\n    \"memberPassword\" : \"asdasd\",\r\n    \"memberName\" : \"asd\",\r\n    \"organizationCode\" : \"A00001\",\r\n    \"privilege\" : \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/join",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "사용자로그인",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"user111\",\r\n    \"memberPassword\" : \"admin1234\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "회원관리 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.37:8081/user/userList?pageNo=1&search=asd&typeCd=mName&searchKind=state0&",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"37"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"userList"
+							],
+							"query": [
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "search",
+									"value": "asd"
+								},
+								{
+									"key": "typeCd",
+									"value": "mName"
+								},
+								{
+									"key": "searchKind",
+									"value": "state0"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "회원승인and상태값변경",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00154\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/updateState",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"updateState"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "회원삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\"memberCode\": \"B00130\"},\r\n    {\"memberCode\": \"B00138\"},\r\n    {\"memberCode\": \"B00134\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "회원비밀번호 초기화",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00133\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/pwInit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"pwInit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "평가권한 조회",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00008\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/userApprovedStandard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"userApprovedStandard"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "평가권한 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00008\",\r\n    \"approvedStandardList\" : [\"3.1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/updateApprovedStandard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"updateApprovedStandard"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "기관의 승인된 스탠다드 목록 조회",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organizationCode\" : \"A00001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/org/orgApprovedStandard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"orgApprovedStandard"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "승인된 목록 다시 가져올 때 저장된 평가항목이 있다면",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00008\",\r\n    \"approvedStandardList\" : [\r\n        \"1.1\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/updateApprovedStandardBeFor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"updateApprovedStandardBeFor"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "승인된 목록 수정하기",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00008\",\r\n    \"approvedStandardList\" : [\r\n        \"1.1\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/updateApprovedStandard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"updateApprovedStandard"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "삭제할 품질평가리스트 확인용",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"memberCode\" : \"B00008\",\r\n    \"approvedStandardList\" : [\r\n        \"10.1\",\r\n        \"10.2\",\r\n        \"10.3\",\r\n        \"11.1\",\r\n        \"11.2\",\r\n        \"11.3\",\r\n        \"11.4\",\r\n        \"11.5\",\r\n        \"12.1\",\r\n        \"12.2\",\r\n        \"12.3\",\r\n        \"13.1\",\r\n        \"13.2\",\r\n        \"13.3\",\r\n        \"13.4\",\r\n        \"13.5\",\r\n        \"13.6\",\r\n        \"14.1\",\r\n        \"14.2\",\r\n        \"14.3\",\r\n        \"14.4\",\r\n        \"14.5\",\r\n        \"14.6\",\r\n        \"15.1\",\r\n        \"15.2\",\r\n        \"2.2\",\r\n        \"2.3\",\r\n        \"3.1\",\r\n        \"3.2\",\r\n        \"4.1\",\r\n        \"4.2\",\r\n        \"4.3\",\r\n        \"5.1\",\r\n        \"5.2\",\r\n        \"6.1\",\r\n        \"6.2\",\r\n        \"6.3\",\r\n        \"7.1\",\r\n        \"7.2\",\r\n        \"8.1\",\r\n        \"8.2\",\r\n        \"8.3\",\r\n        \"8.4\",\r\n        \"9.1\",\r\n        \"9.2\",\r\n        \"9.3\",\r\n        \"9.4\",\r\n        \"9.5\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/user/checkUpdateApprovedStandardBeFor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"user",
+								"checkUpdateApprovedStandardBeFor"
+							],
+							"query": [
+								{
+									"key": "memberCode",
+									"value": "B00151",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "기관관리",
+			"item": [
+				{
+					"name": "기관관리 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/org/selectOrgList",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"selectOrgList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "기관관리 조회_페이징",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.37:8081/org/vueList?pageNo=1&countPerRecord=10&search=아트너&typeCd=all&",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"37"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"vueList"
+							],
+							"query": [
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "countPerRecord",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "아트너"
+								},
+								{
+									"key": "typeCd",
+									"value": "all"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "기관 상태값 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    {\r\n        \"organizationCode\": \"A00004\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/org/updateState",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"updateState"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "기관삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"organizationCode\": \"A00024\"\r\n    },\r\n    {\r\n        \"organizationCode\": \"A00025\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/org/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "시스템",
+									"disabled": true
+								},
+								{
+									"key": "typeCd",
+									"value": "title",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "기관에 허용된 스탠다드 조회",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organizationCode\" : \"A00001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.0.37:8081/org/orgApprovedStandard",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"37"
+							],
+							"port": "8081",
+							"path": [
+								"org",
+								"orgApprovedStandard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
